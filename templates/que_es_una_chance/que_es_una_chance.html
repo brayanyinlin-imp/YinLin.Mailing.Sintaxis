@@ -1,0 +1,659 @@
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap");
+      :root {
+        color-scheme: light;
+        background-color: white;
+      }
+      root {
+        color-scheme: light;
+        background: #ffffff;
+      } /* RESET */
+      body,
+      table,
+      td,
+      p,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        display: block;
+        border: 0;
+        line-height: 0;
+        font-size: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .mainDiv {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: transparent;
+      }
+
+      .content {
+        font-family: "Radio Canada Big", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: #2d3543;
+        text-align: center;
+        max-width: 400px;
+        width: 400px;
+      }
+
+      .hightlighted {
+        font-family: "Radio Canada Big", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 21px;
+        color: #6c1297;
+        text-align: center;
+        max-width: 400px;
+        width: 400px;
+      }
+
+      .table-reset {
+        border-collapse: collapse;
+      }
+      .td-reset {
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+      }
+      .img-fluid {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 0;
+      }
+      .border-none {
+        border: 0;
+      }
+
+      .disclaimer-item {
+        font-family:
+          PT Sans,
+          sans-serif;
+        font-weight: 700;
+        text-align: center;
+        font-size: 8px;
+        line-height: 10px;
+        color: #b84fff;
+        margin: 0;
+        width: 100%;
+      }
+      .preheader-hidden {
+        display: none !important;
+        visibility: hidden;
+        font-size: 0;
+        line-height: 0;
+        height: 0;
+        width: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        color: transparent;
+      }
+
+      /* SPACING */
+      .pt-5 {
+        padding-top: 5px;
+      }
+      .pt-10 {
+        padding-top: 10px;
+      }
+      .pt-20 {
+        padding-top: 20px;
+      }
+      .pb-5 {
+        padding-bottom: 5px;
+      }
+      .pb-10 {
+        padding-bottom: 10px;
+      }
+      .pb-20 {
+        padding-bottom: 20px;
+      }
+      .pb-25 {
+        padding-bottom: 25px;
+      }
+      .pb-30 {
+        padding-bottom: 30px;
+      }
+      .py-15 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      /* LAYOUT */
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .section {
+        width: 100%;
+        background: #ffffff;
+      }
+      .box-440 {
+        width: 440px;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+      .box-400 {
+        width: 400px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .box-360 {
+        width: 360px;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      /* COLORS */
+      .text-main {
+        color: #2d3543;
+      }
+      .text-white {
+        color: #ffffff;
+      }
+      .text-primary {
+        color: #6c1297;
+      }
+      .text-secondary {
+        color: #b84fff;
+      }
+      .text-cyan {
+        color: #00ffff;
+      }
+      .text-tertiary {
+        color: #7d8a9e;
+      }
+
+      .bg-primary {
+        background-color: #ce83fd;
+      }
+      .bg-white {
+        background-color: #ffffff;
+      }
+      .bg-dark {
+        background-color: #6c1297;
+      }
+      .bg-pink-light {
+        background-color: #fbf6ff;
+      }
+
+      /* TYPOGRAPHY */
+      .font-main {
+        font-family: "Radio Canada Big", sans-serif;
+      }
+      .font-italic {
+        font-style: italic;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .fw-400 {
+        font-weight: 400;
+      }
+      .fw-700 {
+        font-weight: 700;
+      }
+      .fs-8 {
+        font-size: 8px;
+        line-height: 10px;
+      }
+      .fs-10 {
+        font-size: 10px;
+        line-height: 17px;
+      }
+      .fs-11 {
+        font-size: 11px;
+        line-height: 17px;
+      }
+      .fs-14 {
+        font-size: 14px;
+        line-height: 21px;
+      }
+      .fs-16 {
+        font-size: 16px;
+        line-height: 21px;
+      }
+      .fs-18 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .fs-20 {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <!-- Preheader (solo para vista previa, oculto en el correo) -->
+    <span
+      aria-hidden="true"
+      style="
+        display: none !important;
+        visibility: hidden;
+        mso-hide: all;
+        font-size: 0;
+        line-height: 0;
+        height: 0;
+        width: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        color: transparent;
+      "
+    >
+      Una chance más es una probabilidad más. Y cada semana hay premios que
+      valen la pena.</span
+    >
+    <div class="mainDiv">
+      <!-- Banner principal -->
+      <table
+        role="presentation"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="border-collapse: collapse"
+      >
+        <tr>
+          <td align="center" style="font-size: 0; line-height: 0; padding: 0">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&?utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_QUE_ES_UN_CHANCE_BANNER.png"
+                alt="Que es una chance"
+                style="display: block; width: 100%; height: auto; border: 0"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 10px; padding-bottom: 0px"
+      >
+        <tr>
+          <td align="center">
+            <p class="font-main fs-20 text-primary fw-700" style="padding-bottom: 10px">
+              Hola, {{name}} 👋
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 fs-16 pb-20">
+              Ya tienes tu suscripción activa y eso es un buen primer paso. Pero
+              hay algo que quizás no sabes exactamente cómo funciona: las
+              chances.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 0px; padding-bottom: 30px"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_JORGE_LUNA_TE_LO_EXPLICA_BANNER.png"
+                width="80%"
+                alt="Jorge Luna te lo explica, Una chance es una probabilidad más en el sorteo"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 10px; padding-bottom: 0px"
+      >
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 fs-16 pb-20 fw-700">
+              📈 ¿Quieres más probabilidades?
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 fs-16 pb-20">
+              Compra chances adicionales por S/1.00 en los premios que más te
+              gusten.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 0px; padding-bottom: 30px"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_COMO_SE_COMPRAN.png"
+                width="100%"
+                alt=""
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 0px; padding-bottom: 30px"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_SUPER_CHANCES_EXPLICACION.png"
+                width="75%"
+                alt="Ver premios"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 0px; padding-bottom: 30px"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_1_PORSCHE_3_TOYOTAS_ESTE_25_JUNIO_BANNER.png"
+                width="100%"
+                alt="Apura, solo tienes hasta el jueves 25 de junio"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 0px; padding-bottom: 30px"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_QUIERO_MAS_CHANCES_V3.png"
+                width="310px"
+                alt="Quiero mas chances"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer 1 -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#CE83FD"
+        style="background-color: #ce83fd"
+      >
+        <tr>
+          <td align="center" style="padding: 15px 0">
+            <!-- Contenedor interno centrado -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              style="margin: 0 auto"
+            >
+              <tr>
+                <!-- Logo con línea divisoria -->
+                <td
+                  align="center"
+                  style="padding-right: 20px; border-right: 1px solid #ffffff"
+                >
+                  <a
+                    href="https://jorgitoluna.com?utm_source=newsletter&utm_medium=email&utm_campaign=08JUN_B_ACTIVOS_AUMENTA_CHANCES"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_LOGO.png"
+                      width="47"
+                      height="47"
+                      alt="No hay sin suerte"
+                      style="display: block"
+                    />
+                  </a>
+                </td>
+                <!-- Espacio entre logo y redes -->
+                <td width="20"></td>
+                <!-- Íconos sociales -->
+                <td align="center">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center" style="padding: 0 10px">
+                        <a
+                          href="https://www.instagram.com/nohaysinsuerteoficial/"
+                        >
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/ig-baw.png"
+                            width="30"
+                            alt="Instagram"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                      <td align="center" style="padding: 0 10px">
+                        <a href="https://www.tiktok.com/@nohaysinsuerte">
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_ICONO_TIKTOK.png"
+                            width="30"
+                            alt="TikTok"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                      <td align="center" style="padding: 0 10px">
+                        <a
+                          href="https://whatsapp.com/channel/0029VacopYDLikg74UComi3l"
+                        >
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_ICONO_WHATSAPP.png"
+                            width="30"
+                            alt="WhatsApp"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer 2 -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#CE83FD"
+      >
+        <tr>
+          <td>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                text-align: center;
+                font-size: 11px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 5px;
+              "
+            >
+              Si tiene alguna pregunta por favor enviar un email a
+              <b>soporte@nohaysinsuerte.com</b>
+            </p>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                font-style: italic;
+                text-align: center;
+                font-size: 10px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 5px;
+              "
+            >
+              No responder este correo solo es de comunicaciones.
+            </p>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                text-align: center;
+                font-size: 10px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 21px;
+              "
+            >
+              <a
+                href="https://jorgitoluna.com/terminos-y-condiciones"
+                style="text-decoration: underline; color: #fff"
+                >Términos & condiciones</a
+              >
+              |
+              <a
+                href="https://jorgitoluna.com/preguntas-frecuentes"
+                style="text-decoration: underline; color: #fff"
+                >Ayuda</a
+              >
+            </p>
+          </td>
+        </tr>
+      </table>
+      <!-- Disclaimer -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#6C1297"
+        style="padding: 13px 12px"
+      >
+        <tr>
+          <td>
+            <p class="disclaimer-item">Disponible para una sola compra.</p>
+            <p class="disclaimer-item">
+              Recuerda, adquirir más chances no asegura que ganarás. Sólo
+              aumenta tus probabilidades de ganar.
+            </p>
+            <p class="disclaimer-item">
+              Si prefieres no recibir más correos nuestros, puedes hacer
+              <a
+                href="https://jorgitoluna.com/desuscribirse?email={{email}}"
+                target="_blank"
+                style="color: #00ffff; text-decoration: underline"
+                >clic aquí</a
+              >
+            </p>
+            <p class="disclaimer-item">
+              Te pedimos que no respondas a este correo. Si tienes alguna
+              pregunta, no dudes en escribirnos a nuestra cuenta de Instagram
+            </p>
+            <p class="disclaimer-item">
+              @nohaysinsuerte o enviar un correo electrónico a
+              soporte@nohaysinsuerte.com.
+            </p>
+            <p class="disclaimer-item">
+              Este mensaje fue enviado por NO HAY SIN SUERTE - Dame Tu Plata
+              S.A.C.
+            </p>
+            <p class="disclaimer-item">
+              Todos los derechos reservados. © 2026.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
