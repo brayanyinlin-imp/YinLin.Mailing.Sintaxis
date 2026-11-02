@@ -1,0 +1,871 @@
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap");
+      :root {
+        color-scheme: light;
+        background-color: white;
+      }
+      root {
+        color-scheme: light;
+        background: #ffffff;
+      } /* RESET */
+      body,
+      table,
+      td,
+      p,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        display: block;
+        border: 0;
+        line-height: 0;
+        font-size: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .mainDiv {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: transparent;
+      }
+
+      .content {
+        font-family: "Radio Canada Big", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: #2d3543;
+        text-align: center;
+        max-width: 400px;
+        width: 400px;
+      }
+
+      .hightlighted {
+        font-family: "Radio Canada Big", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 21px;
+        color: #6c1297;
+        text-align: center;
+        max-width: 400px;
+        width: 400px;
+      }
+
+      .table-reset {
+        border-collapse: collapse;
+      }
+      .td-reset {
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+      }
+      .img-fluid {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 0;
+      }
+      .border-none {
+        border: 0;
+      }
+
+      .disclaimer-item {
+        font-family:
+          PT Sans,
+          sans-serif;
+        font-weight: 700;
+        text-align: center;
+        font-size: 8px;
+        line-height: 10px;
+        color: #b84fff;
+        margin: 0;
+        width: 100%;
+      }
+      .preheader-hidden {
+        display: none !important;
+        visibility: hidden;
+        font-size: 0;
+        line-height: 0;
+        height: 0;
+        width: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        color: transparent;
+      }
+
+      /* SPACING */
+      .pt-5 {
+        padding-top: 5px;
+      }
+      .pt-10 {
+        padding-top: 10px;
+      }
+      .pt-20 {
+        padding-top: 20px;
+      }
+      .pb-5 {
+        padding-bottom: 5px;
+      }
+      .pb-10 {
+        padding-bottom: 10px;
+      }
+      .pb-20 {
+        padding-bottom: 20px;
+      }
+      .pb-25 {
+        padding-bottom: 25px;
+      }
+      .pb-30 {
+        padding-bottom: 30px;
+      }
+      .py-15 {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      /* LAYOUT */
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .section {
+        width: 100%;
+        background: #ffffff;
+      }
+      .box-440 {
+        width: 440px;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+      .box-400 {
+        width: 400px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .box-375 {
+        width: 375px;
+        max-width: 375px;
+        margin: 0 auto;
+      }
+      .box-360 {
+        width: 360px;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      /* COLORS */
+      .text-main {
+        color: #2d3543;
+      }
+      .text-white {
+        color: #ffffff;
+      }
+      .text-primary {
+        color: #6c1297;
+      }
+      .text-secondary {
+        color: #b84fff;
+      }
+      .text-cyan {
+        color: #00ffff;
+      }
+      .text-tertiary {
+        color: #7d8a9e;
+      }
+
+      .bg-primary {
+        background-color: #ce83fd;
+      }
+      .bg-white {
+        background-color: #ffffff;
+      }
+      .bg-dark {
+        background-color: #6c1297;
+      }
+      .bg-pink-light {
+        background-color: #fbf6ff;
+      }
+
+      /* TYPOGRAPHY */
+      .font-main {
+        font-family: "Radio Canada Big", sans-serif;
+      }
+      .font-italic {
+        font-style: italic;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .fw-400 {
+        font-weight: 400;
+      }
+      .fw-700 {
+        font-weight: 700;
+      }
+      .fs-8 {
+        font-size: 8px;
+        line-height: 10px;
+      }
+      .fs-10 {
+        font-size: 10px;
+        line-height: 17px;
+      }
+      .fs-11 {
+        font-size: 11px;
+        line-height: 17px;
+      }
+      .fs-14 {
+        font-size: 14px;
+        line-height: 21px;
+      }
+      .fs-16 {
+        font-size: 16px;
+        line-height: 21px;
+      }
+      .fs-18 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .fs-20 {
+        font-size: 20px;
+        line-height: 26px;
+      }
+
+      /* BORDERS */
+      .border-2 {
+        border: 2px solid #b84fff;
+      }
+      .border-secondary {
+        border-color: #b84fff;
+      }
+
+      /* ROUNDED (tailwind) */
+      .rounded-none {
+        border-radius: 0;
+      }
+      .rounded-sm {
+        border-radius: 2px;
+      }
+      .rounded {
+        border-radius: 4px;
+      }
+      .rounded-md {
+        border-radius: 6px;
+      }
+      .rounded-lg {
+        border-radius: 8px;
+      }
+      .rounded-xl {
+        border-radius: 12px;
+      }
+      .rounded-2xl {
+        border-radius: 16px;
+      }
+      .rounded-3xl {
+        border-radius: 24px;
+      }
+      .rounded-full {
+        border-radius: 9999px;
+      }
+      /* UTILITIES */
+      .w-full {
+        width: 100%;
+      }
+      .w-50 {
+        width: 50%;
+      }
+      .h-330 {
+        height: 330px;
+      }
+      .h-auto {
+        height: auto;
+      }
+      .max-w-180 {
+        max-width: 180px;
+      }
+      .max-w-560 {
+        max-width: 560px;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .table-fixed {
+        table-layout: fixed;
+      }
+      .block {
+        display: block;
+      }
+      .p-10 {
+        padding: 10px;
+      }
+      .px-10 {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .py-5 {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+      .py-10 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .pt-8 {
+        padding-top: 8px;
+      }
+      .text-blue {
+        color: #2528ce;
+      }
+      .bg-blue-100 {
+        background-color: #dbeafe;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <!-- Preheader (solo para vista previa, oculto en el correo) -->
+    <!-- Preheader -->
+    <span aria-hidden="true" class="preheader-hidden">
+      Tú eres parte de nuestra historia y no podíamos celebrar sin agradecerte.
+      Tenemos algunas cositas para ti. 🎁
+    </span>
+    <span aria-hidden="true" class="preheader-hidden">
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    </span>
+
+    <div class="mainDiv">
+      <!-- Banner principal -->
+      <table
+        role="presentation"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="border-collapse: collapse"
+      >
+        <tr>
+          <td align="center" style="font-size: 0; line-height: 0; padding: 0">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_TU_ERES_PARTE_DE_NUESTRA_HISTORIA_BANNER.png"
+                width="100%"
+                alt="Tu eres parte de nuestra historia"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        role="presentation"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="border-collapse: collapse"
+      >
+        <tr>
+          <td align="center" style="font-size: 0; line-height: 0; padding: 0">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_GRACIAS_POR_SER_PARTE_DE_NUESTRA_HISTORIA_TITULO.png"
+                alt="Gracias por ser parte de nuestra historia"
+                width="80%"
+                class="pt-20 pb-10"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-top: 10px; padding-bottom: 10px"
+      >
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 pt-10 fs-18">
+              {{name}}, NHSS cumple un año más y son pocos los que nos han
+              acompañado desde el inicio, como tú. Hoy queremos reconocer y
+              agradecerte por seguir siendo parte activa de nuestra
+              historia.🫶🍀
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center">
+            <p class="font-main text-primary fw-700 box-440 pt-10 fs-18">
+              🎁 ¡Por eso, tenemos estos regalos para ti!
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        class="bg-white pb-10"
+      >
+        <tr>
+          <td align="center">
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="8"
+              width="100%"
+              class="bg-white pb-20 w-full max-w-560 table-fixed"
+            >
+              <tr>
+                <td
+                  width="50%"
+                  height="330"
+                  align="center"
+                  valign="top"
+                  class="border-2 rounded-xl w-50 h-330 p-10"
+                >
+                  <a
+                    href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fbeneficios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_LUKERS_50_OFF_BENEFIT.png"
+                      width="180"
+                      alt="50% de descuento en Luckers"
+                      class="w-full max-w-180 h-auto mx-auto"
+                    />
+                  </a>
+
+                  <p class="font-main pt-8">
+                    Presenta este código en Lukers tiendas
+                  </p>
+                  <p class="font-main fw-700">Único consumo.</p>
+                  <p class="font-main block py-10">
+                    <span class="text-blue bg-blue-100 px-10 py-5 rounded-md">
+                      CÓDIGO: {{lukerscode}}
+                    </span>
+                  </p>
+                </td>
+                <td
+                  width="50%"
+                  height="330"
+                  align="center"
+                  valign="top"
+                  class="border-2 rounded-xl w-50 h-330 p-10"
+                >
+                  <a
+                    href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fbeneficios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_APPLEBEES_20_OFF_BENEFIT.png"
+                      width="180"
+                      alt="Applebees + IHOP"
+                      class="w-full max-w-180 h-auto mx-auto"
+                    />
+                  </a>
+
+                  <p class="font-main pt-8">
+                    Presenta este código en las tiendas de IHOP.
+                  </p>
+                  <p class="font-main fw-700">Único consumo.</p>
+                  <p class="font-main block py-10">
+                    <span class="text-blue bg-blue-100 px-10 py-5 rounded-md">
+                      CÓDIGO: {{ihopcode}}
+                    </span>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  width="50%"
+                  height="330"
+                  align="center"
+                  valign="top"
+                  class="border-2 rounded-xl w-50 h-330 p-10"
+                >
+                  <a
+                    href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fbeneficios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_SOUND_MUSIC_FEST_2_ENTRADAS_DOBLES.png"
+                      width="180"
+                      alt="Sound Music Fest, 2 entradas dobles"
+                      class="w-full max-w-180 h-auto mx-auto"
+                    />
+                  </a>
+
+                  <p class="font-main pt-8">
+                    Las entradas serán enviadas a tu correo desde el correo de
+                  </p>
+                  <p class="font-main fs-14 block py-10">
+                    <span class="text-blue bg-blue-100 px-10 py-5 rounded-md">
+                      ganadores@nohaysinsuerte.com
+                    </span>
+                  </p>
+                </td>
+                <td
+                  width="50%"
+                  height="330"
+                  align="center"
+                  valign="top"
+                  class="border-2 rounded-xl w-50 h-330 p-10"
+                >
+                  <a
+                    href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fbeneficios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_TRUEDENT_CLEANING_FREE.png"
+                      width="180"
+                      alt="Truedent, 1 limpieza dental gratuita"
+                      class="w-full max-w-180 h-auto mx-auto"
+                    />
+                  </a>
+                  <p class="font-main pt-8">
+                    Presenta este código en una de las sedes de Truedent.
+                  </p>
+                  <p class="font-main fw-700">Único consumo.</p>
+                  <p class="font-main block py-10">
+                    <span class="text-blue bg-blue-100 px-10 py-5 rounded-md">
+                      CÓDIGO: {{truedentcode}}
+                    </span>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff; padding-bottom: 10px"
+      >
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 pt-10 fs-14">
+              Recuerda que cada marca tiene sus propios
+              <a
+                href="https://drive.google.com/file/d/1ANWGDDvk0Vlj2Ku9Vv9q0uDdwR1ylFzj/view?usp=sharing"
+                class="font-main"
+                style="color: black;"
+              >
+                términos y condiciones
+              </a>
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center">
+            <p class="font-main text-primary fw-700 box-440 pt-10 fs-18">
+              Y eso no es todo...
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="margin: 0 auto"
+        class="text-main font-main fs-16 pb-20 pt-20"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fganadores&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_FELIZ_ANIVERSARIO_HERMANITO_3X1_EN_TODOS_LOS_PREMIOS_BANNER.png"
+                width="100%"
+                alt="Nuestros suertudos ya están celebrando. Algunos ya manifestaron su suerte"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        class="bg-white pt-10"
+      >
+        <tr>
+          <td align="center">
+            <a
+              href="https://jorgitoluna.com/iniciar-sesion?returnUrl=%2Fpremios&utm_source=newsletter&utm_medium=email&utm_campaign=26oct_a_activos_aniversario_grupo1&email={{email}}&internalId={{internalId}}"
+              target="_blank"
+            >
+              <img
+                src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSSV2_AUMENTAR_CHANCES_BUTTON.png"
+                width="355px"
+                alt="Boton Aumentar chances"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        style="background: #ffffff"
+        class="pb-20"
+      >
+        <tr>
+          <td align="center">
+            <p class="font-main box-440 pt-10 fs-18">
+              ¡Porque los hermanitos más fieles merecen celebrar a lo grande! 💜
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer 1 -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#CE83FD"
+        style="background-color: #ce83fd"
+      >
+        <tr>
+          <td align="center" style="padding: 15px 0">
+            <!-- Contenedor interno centrado -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              style="margin: 0 auto"
+            >
+              <tr>
+                <!-- Logo con línea divisoria -->
+                <td
+                  align="center"
+                  style="padding-right: 20px; border-right: 1px solid #ffffff"
+                >
+                  <a
+                    href="https://jorgitoluna.com?utm_source=newsletter&utm_medium=email"
+                  >
+                    <img
+                      src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_LOGO.png"
+                      width="47"
+                      height="47"
+                      alt="No hay sin suerte"
+                      style="display: block"
+                    />
+                  </a>
+                </td>
+                <!-- Espacio entre logo y redes -->
+                <td width="20"></td>
+                <!-- Íconos sociales -->
+                <td align="center">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td align="center" style="padding: 0 10px">
+                        <a
+                          href="https://www.instagram.com/nohaysinsuerteoficial/"
+                        >
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/ig-baw.png"
+                            width="30"
+                            alt="Instagram"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                      <td align="center" style="padding: 0 10px">
+                        <a href="https://www.tiktok.com/@nohaysinsuerte">
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_ICONO_TIKTOK.png"
+                            width="30"
+                            alt="TikTok"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                      <td align="center" style="padding: 0 10px">
+                        <a
+                          href="https://whatsapp.com/channel/0029VacopYDLikg74UComi3l"
+                        >
+                          <img
+                            src="https://stnohaysinsuerteprod.blob.core.windows.net/mailing/NHSS_ICONO_WHATSAPP.png"
+                            width="30"
+                            alt="WhatsApp"
+                            style="display: block"
+                          />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer 2 -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#CE83FD"
+      >
+        <tr>
+          <td>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                text-align: center;
+                font-size: 11px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 5px;
+              "
+            >
+              Si tiene alguna pregunta por favor enviar un email a
+              <b>soporte@nohaysinsuerte.com</b>
+            </p>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                font-style: italic;
+                text-align: center;
+                font-size: 10px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 5px;
+              "
+            >
+              No responder este correo solo es de comunicaciones.
+            </p>
+            <p
+              style="
+                font-family:
+                  PT Sans,
+                  sans-serif;
+                font-weight: 400;
+                text-align: center;
+                font-size: 10px;
+                line-height: 17px;
+                color: #fff;
+                margin: 0;
+                padding-bottom: 21px;
+              "
+            >
+              <!-- https://jorgitoluna.com/terminos-y-condiciones -->
+              <a
+                href="https://drive.google.com/file/d/1ANWGDDvk0Vlj2Ku9Vv9q0uDdwR1ylFzj/view?usp=sharing"
+                style="text-decoration: underline; color: #fff"
+                >Términos & condiciones</a
+              >
+              |
+              <a
+                href="https://jorgitoluna.com/preguntas-frecuentes"
+                style="text-decoration: underline; color: #fff"
+                >Ayuda</a
+              >
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Disclaimer -->
+      <table
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+        bgcolor="#6C1297"
+        style="padding: 13px 12px"
+      >
+        <tr>
+          <td>
+            <p class="disclaimer-item">
+              El mínimo de chances que puedes comprar con este beneficio son S/.
+              10 y el máximo de S/. 300.
+            </p>
+            <p class="disclaimer-item">Disponible para una sola compra.</p>
+            <p class="disclaimer-item">
+              Recuerda, adquirir más chances no asegura que ganarás. Sólo
+              aumenta tus probabilidades de ganar.
+            </p>
+            <p class="disclaimer-item">
+              Si prefieres no recibir más correos nuestros, puedes hacer
+              <a
+                href="https://jorgitoluna.com/desuscribirse?email={{email}}"
+                target="_blank"
+                style="color: #00ffff; text-decoration: underline"
+                >clic aquí</a
+              >
+            </p>
+            <p class="disclaimer-item">
+              Te pedimos que no respondas a este correo. Si tienes alguna
+              pregunta, no dudes en escribirnos a nuestra cuenta de Instagram
+            </p>
+            <p class="disclaimer-item">
+              @nohaysinsuerte o enviar un correo electrónico a
+              soporte@nohaysinsuerte.com.
+            </p>
+            <p class="disclaimer-item">
+              Este mensaje fue enviado por NO HAY SIN SUERTE - Dame Tu Plata
+              S.A.C.
+            </p>
+            <p class="disclaimer-item">
+              Todos los derechos reservados. © 2026.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
