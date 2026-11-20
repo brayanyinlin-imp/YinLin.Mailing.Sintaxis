@@ -10,7 +10,7 @@ export default Layout({
   body: [
     Image({
       src: "NHSSV2_TU_AMIGO_SE_SUSCRIBIO_Y_TE_REGALO_10_CHANCES_BANNER.png",
-      alt: "El nuevo iPhone 18 Pro Max llegó con 2 por 1 en chances este 19 de noviembre.",
+      alt: "Tu amigo se suscribió y te regalamos 10 chances",
       href: redirect,
     }),
     Footer(),

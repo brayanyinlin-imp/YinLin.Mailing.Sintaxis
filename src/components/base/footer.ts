@@ -24,7 +24,7 @@ const icon = (s: (typeof SOCIAL)[number]): Html =>
   `<td align="center" style="padding:0 10px"><a href="${s.href}" target="_blank"><img src="${asset(s.icon)}" width="30" alt="${s.name}" style="display:block;border:0"></a></td>`;
 
 export interface FooterProps {
-  /** Nombre del archivo en el blob o URL https absoluta. */
+  /** Link de "Términos & condiciones" (p. ej. los T&C de una promo). Por defecto, /terminos-y-condiciones. */
   href?: string;
 }
 
