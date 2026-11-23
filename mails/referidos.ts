@@ -20,7 +20,7 @@ export default Layout({
       href: redirect,
     }),
     Text({
-      html: "<p>Tu amigo se suscribió al Plan Opulencia usando tu código {{ReferralCode}}</p>",
+      html: "Tu amigo se suscribió al Plan Opulencia usando tu código {{ReferralCode}}",
       padding: [10, 10],
     }),
     Footer(),
