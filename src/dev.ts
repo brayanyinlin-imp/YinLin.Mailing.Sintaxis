@@ -11,7 +11,7 @@ import { spawn } from 'node:child_process'
 import { watch } from 'node:fs'
 import { readdir, readFile } from 'node:fs/promises'
 import { createServer, type ServerResponse } from 'node:http'
-import { join, normalize } from 'node:path'
+import { join, normalize, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const PORT = Number(process.env.PORT ?? 5173)
@@ -87,11 +87,30 @@ const CLIENT = `<script>
 </script>`
 
 const index = async (): Promise<string> => {
-  const files = (await readdir(distDir).catch(() => [])).filter((f) => f.endsWith('.html'))
-  const items = files.map((f) => `<li><a href="/${f}">${f.replace(/\.html$/, '')}</a></li>`).join('')
+  const files = (await readdir(distDir, { recursive: true, encoding: 'utf-8' }).catch(() => []))
+    .map((f) => f.split(sep).join('/'))
+    .filter((f) => f.endsWith('.html'))
+    .sort()
+
+  // Agrupa por carpeta: la raíz primero, luego cada subcarpeta (p. ej. una por marca).
+  const groups = new Map<string, string[]>()
+  for (const f of files) {
+    const folder = f.includes('/') ? f.slice(0, f.lastIndexOf('/')) : ''
+    groups.set(folder, [...(groups.get(folder) ?? []), f])
+  }
+  const sections = [...groups]
+    .sort(([a], [b]) => (a === '' ? -1 : b === '' ? 1 : a.localeCompare(b)))
+    .map(([folder, list]) => {
+      const items = list
+        .map((f) => `<li><a href="/${encodeURI(f)}">${f.slice(folder ? folder.length + 1 : 0).replace(/\.html$/, '')}</a></li>`)
+        .join('')
+      return `${folder ? `<h2>${folder}/</h2>` : ''}<ul>${items}</ul>`
+    })
+    .join('')
+
   return `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Mailings</title>
-<style>body{font:15px system-ui,sans-serif;max-width:600px;margin:40px auto;padding:0 16px}a{color:#6c1297}</style></head>
-<body><h1>Mailings</h1><ul>${items || '<li>Sin mails en dist/</li>'}</ul></body></html>`
+<style>body{font:15px system-ui,sans-serif;max-width:600px;margin:40px auto;padding:0 16px}a{color:#6c1297}h2{font-size:15px;margin:24px 0 4px;color:#555}</style></head>
+<body><h1>Mailings</h1>${sections || '<ul><li>Sin mails en dist/</li></ul>'}</body></html>`
 }
 
 createServer(async (req, res) => {

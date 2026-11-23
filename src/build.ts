@@ -1,10 +1,12 @@
 /**
- * Genera dist/<mail>.html a partir de cada examples/<mail>.ts.
- *   pnpm build            → todos
- *   pnpm build iphone     → solo los que contengan "iphone" en el nombre
+ * Genera dist/<ruta>.html a partir de cada examples/<ruta>.ts, incluidas las subcarpetas.
+ * La estructura se replica: examples/tucambista/fide.ts → dist/tucambista/fide.html
+ *   pnpm build              → todos
+ *   pnpm build iphone       → solo los que contengan "iphone" en la ruta
+ *   pnpm build tucambista/  → solo los de esa carpeta
  */
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs'
-import { basename, join } from 'node:path'
+import { dirname, join, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { checkHandlebarsTemplate } from './index.ts'
 
@@ -15,16 +17,21 @@ const filter = process.argv[2] ?? ''
 
 mkdirSync(outDir, { recursive: true })
 
-const files = readdirSync(srcDir).filter((f) => f.endsWith('.ts') && f.includes(filter))
+// Rutas relativas con "/" (en Windows readdir devuelve "\").
+const files = readdirSync(srcDir, { recursive: true, encoding: 'utf-8' })
+  .map((f) => f.split(sep).join('/'))
+  .filter((f) => f.endsWith('.ts') && f.includes(filter))
+  .sort()
 let failed = 0
 
 for (const file of files) {
-  const name = basename(file, '.ts')
+  const name = file.replace(/\.ts$/, '')
   try {
     const mod: { default?: unknown } = await import(pathToFileURL(join(srcDir, file)).href)
     if (typeof mod.default !== 'string') throw new Error('el export default debe ser el resultado de Layout()')
 
     const out = join(outDir, `${name}.html`)
+    mkdirSync(dirname(out), { recursive: true })
     writeFileSync(out, mod.default)
     if (!checkHandlebarsTemplate(out)) throw new Error('la salida no compila con Handlebars')
 
