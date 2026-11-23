@@ -1,4 +1,5 @@
 import type { Brand } from '#core/brand'
+import { createTailwind } from '#core/tailwind'
 import { createUtm } from '#core/utm'
 import { createImage } from './base/image.ts'
 import { createLayout } from './base/layout.ts'
@@ -12,7 +13,7 @@ import { Var } from './base/var.ts'
  */
 export const createKit = (brand: Brand) => ({
   brand,
-  Layout: createLayout(brand),
+  Layout: createLayout(brand, createTailwind(brand.theme)),
   Image: createImage(brand),
   Text,
   Raw,

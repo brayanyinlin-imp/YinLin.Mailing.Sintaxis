@@ -37,17 +37,19 @@ for (const file of files) {
 
     rawUsage.length = 0
     const mod: { default?: unknown } = await import(pathToFileURL(join(srcDir, file)).href)
-    if (typeof mod.default !== 'string') throw new Error('el export default debe ser el resultado de Layout()')
+    // Layout() devuelve una promesa (Tailwind compila de forma asíncrona).
+    const html = await mod.default
+    if (typeof html !== 'string') throw new Error('el export default debe ser el resultado de Layout()')
 
     const out = join(outDir, `${name}.html`)
     mkdirSync(dirname(out), { recursive: true })
-    writeFileSync(out, mod.default)
+    writeFileSync(out, html)
     if (!checkHandlebarsTemplate(out)) throw new Error('la salida no compila con Handlebars')
 
     const used = [...new Set(rawUsage)]
     for (const raw of used) raws.set(raw, [...(raws.get(raw) ?? []), name])
 
-    const kb = Buffer.byteLength(mod.default) / 1024
+    const kb = Buffer.byteLength(html) / 1024
     console.log(`✔ dist/${name}.html (${kb.toFixed(1)} KB)${used.length ? ` · raw: ${used.join(', ')}` : ''}`)
   } catch (e) {
     failed++

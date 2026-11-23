@@ -9,4 +9,5 @@ export default defineBrand({
   link: (path) => ({ path: '/iniciar-sesion', query: { returnUrl: path } }),
   personalization: { },
   styles: new URL('./styles.css', import.meta.url),
+  theme: new URL('./theme.css', import.meta.url),
 })

@@ -1,0 +1,13 @@
+/* NHSS: tema de Tailwind. Cada valor genera sus utilidades:
+   --color-primary → text-primary, bg-primary, border-primary…  ·  --font-main → font-main
+   Se suma al tema del preset de Maizzle (paleta de Tailwind en hex, espaciado de 4px, tamaños en px). */
+@theme {
+  --color-main: #2d3543;
+  --color-primary: #6c1297;
+  --color-secondary: #b84fff;
+  --color-tertiary: #7d8a9e;
+  --color-cyan: #00ffff;
+
+  --font-main: "Radio Canada Big", Arial, sans-serif;
+  --font-legal: "PT Sans", Arial, sans-serif;
+}

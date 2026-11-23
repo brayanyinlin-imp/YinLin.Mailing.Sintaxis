@@ -67,17 +67,18 @@ src/
     utm.ts             ← utm({ campaign }) → u.link(), u.url()
     brand.ts           ← defineBrand() y el tipo Brand
     styles.ts          ← CSS de la marca + common.css + css del mail
+    tailwind.ts        ← utilidades de Tailwind aptas para email (ver tailwind.md)
   components/
     base/              ← Layout, Image, Text (sin marca)
     kit.ts             ← createKit(brand): componentes atados a una marca
-  styles/common.css    ← reset, fs-*, fw-*, pt-* / pb-*, box-*
+  styles/common.css    ← reset, fs-*, fw-*, box-*
   brands/
     nhss/
       brand.ts         ← configuración
       index.ts         ← lo que importa un mail de NHSS
-      footer.ts · disclaimer.ts · styles.css
+      footer.ts · disclaimer.ts · styles.css · theme.css
     tucambista/        ← pendiente (Fase 6)
-      brand.ts · index.ts · footer.ts · legal.ts · styles.css
+      brand.ts · index.ts · footer.ts · legal.ts · styles.css · theme.css
 ```
 
 ### Aliases de import ✅
@@ -105,6 +106,7 @@ export default defineBrand({
   link: (path) => ({ path: '/iniciar-sesion', query: { returnUrl: path } }),
   personalization: { email: '{{email}}', internalId: '{{internalId}}' },
   styles: new URL('./styles.css', import.meta.url),
+  theme: new URL('./theme.css', import.meta.url),
 })
 
 // src/brands/tucambista/brand.ts (propuesto)
@@ -116,6 +118,7 @@ export default defineBrand({
   link: (path) => ({ path }),     // links directos
   personalization: {},
   styles: new URL('./styles.css', import.meta.url),
+  theme: new URL('./theme.css', import.meta.url),
 })
 ```
 
@@ -126,7 +129,8 @@ export default defineBrand({
 | `utm` | `utm_source` y `utm_medium` de la marca |
 | `link(path)` | A dónde apunta un link: directo, o por el login con `returnUrl` |
 | `personalization` | Params del destinatario que se agregan a los links personalizados |
-| `styles` | CSS de la marca: fuentes, paleta y bloques propios |
+| `styles` | CSS de la marca: `@import` de fuentes y bloques propios |
+| `theme` | Tema de Tailwind: colores y fuentes (`text-primary`, `font-main`…) |
 
 Cada marca expone su kit:
 
@@ -185,14 +189,15 @@ Cualquier otro param (incluidos `utm_*` propios como `utm_media_content` o `utm_
 
 ## 7. Estilos ✅
 
-`base.css` se dividió en dos capas:
+`base.css` se dividió en capas:
 
 | Capa | Contenido |
 |---|---|
-| `brands/<marca>/styles.css` | `@import` de fuentes, `font-main`, `font-legal`, paleta (`text-main`, `text-primary`, `text-secondary`, `text-tertiary`…) y bloques propios (`footer-text`, `disclaimer-item`) |
-| `styles/common.css` | Reset, `font-italic`, `fw-*`, `fs-*`, `pt-*` / `pb-*`, `box-*` |
+| `brands/<marca>/styles.css` | `@import` de fuentes y bloques propios (`footer-text`, `disclaimer-item`) |
+| `brands/<marca>/theme.css` | Tema de Tailwind: paleta (`text-main`, `text-primary`, `text-secondary`, `text-tertiary`…) y fuentes (`font-main`, `font-legal`). Tailwind genera solo las que usa cada mail ([tailwind.md](tailwind.md)) |
+| `styles/common.css` | Reset, `font-italic`, `fw-*`, `fs-*`, `box-*` |
 
-Orden de inyección: **marca → común → `css` del mail**. La marca va primero porque su `@import` debe ser la primera regla. `Text({ variant: 'primary' })` produce `text-primary` en ambas marcas; en NHSS es `#6c1297` y en TuCambista sería `#1D63FF`.
+Orden de inyección: **marca → común → `css` del mail → utilidades de Tailwind**. La marca va primero porque su `@import` debe ser la primera regla. `Text({ variant: 'primary' })` produce `text-primary` en ambas marcas; en NHSS es `#6c1297` y en TuCambista sería `#1D63FF`.
 
 ## 8. `Switch`: contenido por segmento
 

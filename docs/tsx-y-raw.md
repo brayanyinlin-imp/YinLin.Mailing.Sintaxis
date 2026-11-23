@@ -9,6 +9,7 @@ Los componentes (`Image`, `Text`…) se siguen usando como funciones. **TSX es o
 
 - Los `.ts` no cambian. Un mail pasa a `.tsx` solo si lo necesita (basta con renombrarlo).
 - No hay React ni dependencias nuevas: el runtime propio (`src/jsx/jsx-runtime.ts`) convierte JSX en strings de HTML.
+- En el HTML a mano se pueden usar utilidades de Tailwind (`px-4`, `text-primary`, `sm:px-2`…): ver [tailwind.md](tailwind.md).
 
 ## Ejemplo
 

@@ -1,19 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap");
 
-/* NHSS: fuentes, paleta y bloques propios. Va antes de common.css.
+/* NHSS: @import de fuentes y bloques propios. Va antes de common.css.
+   Colores y fuentes (text-primary, font-main…) están en theme.css y los genera Tailwind.
    Valores literales: los clientes de correo no soportan var(). */
-
-/* TIPOGRAFÍA */
-.font-main { font-family: "Radio Canada Big", Arial, sans-serif; }
-.font-legal { font-family: "PT Sans", Arial, sans-serif; }
-
-/* COLORES */
-.text-main      { color: #2d3543; }
-.text-primary   { color: #6c1297; }
-.text-secondary { color: #b84fff; }
-.text-tertiary  { color: #7d8a9e; }
-.text-white     { color: #ffffff; }
-.text-cyan      { color: #00ffff; }
 
 /* FOOTER Y LEGAL */
 .footer-text { font-family: "PT Sans", Arial, sans-serif; font-weight: 400; text-align: center; font-size: 10px; line-height: 17px; color: #ffffff; margin: 0; }
