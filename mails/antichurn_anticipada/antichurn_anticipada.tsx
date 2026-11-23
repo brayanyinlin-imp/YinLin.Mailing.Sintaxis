@@ -40,7 +40,13 @@ export default Layout({
     }),
     Text({
       variant: "highlight",
-      html: "🔥 ¡NO DEJES QUE SE TE ESCAPEN!",
+      html: (
+        <span>
+          <strong>
+            <b>🔥 ¡NO DEJES QUE SE TE ESCAPEN!</b>
+          </strong>
+        </span>
+      ),
       padding: [20, 10],
     }),
     Image({
@@ -78,8 +84,7 @@ export default Layout({
     }),
     Disclaimer({
       extra: [
-        "El mínimo de chances que puedes comprar con este beneficio son S/. 20 y el máximo de S/.300. Disponible para una sola compra.",
-        "Recuerda, adquirir más chances no asegura que ganarás. Sólo aumenta tus probabilidades de ganar."
+        "Recuerda, adquirir más chances no asegura que ganarás. Sólo aumenta tus probabilidades de ganar.",
       ],
     }),
   ],
