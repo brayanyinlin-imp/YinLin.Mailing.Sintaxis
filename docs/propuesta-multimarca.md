@@ -91,7 +91,7 @@ Definidos en `package.json` (`"imports"`, nativo de Node; TypeScript y tsx los r
 | `#components/<ruta>` | `src/components/<ruta>.ts` | `#components/kit`, `#components/base/image` |
 | `#core/<módulo>` | `src/core/<módulo>.ts` | `#core/html`, `#core/utm`, `#core/brand` |
 
-Un mail se importa igual sin importar en qué subcarpeta de `examples/` esté. Dentro de una misma carpeta se siguen usando imports relativos (`./brand.ts`).
+Un mail se importa igual sin importar en qué subcarpeta de `mails/` esté. Dentro de una misma carpeta se siguen usando imports relativos (`./brand.ts`).
 
 ## 5. La marca
 

@@ -13,7 +13,7 @@ Los componentes (`Image`, `Text`…) se siguen usando como funciones. **TSX es o
 ## Ejemplo
 
 ```tsx
-// examples/aniversario.tsx
+// mails/aniversario.tsx
 import { Disclaimer, Footer, Image, Layout, Raw, Text, Var, utm } from '#brands/nhss'
 
 const u = utm({ campaign: '11nov_a_activos_aniversario_grupo1' })

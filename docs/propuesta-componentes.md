@@ -1,7 +1,7 @@
 # Propuesta: estandarización de mailings con componentes
 
 > **Estado:** v2, con las decisiones acordadas · **Fecha:** 2026-11-19
-> **Avance:** Fase 1 implementada. Se genera con `pnpm build` (salida en `dist/`). Los mails de ejemplo están en `examples/` hasta resolver P1.
+> **Avance:** Fase 1 implementada. Se genera con `pnpm build` (salida en `dist/`). Los mails están en `mails/` (antes `examples/`); la organización por marca queda pendiente de P1.
 > **Plan vigente:** [plan.md](plan.md) (reemplaza la numeración de fases del §10).
 > **Extensión:** uso por varias marcas (TuCambista) en [propuesta-multimarca.md](propuesta-multimarca.md).
 > **Base del análisis:** los 55 templates de `templates/`; en detalle `specials/iphone.html`, `semanal/inactivos.html`, `segmentados_especiales/aniversario_grupo_1.html` y la carpeta `specials/`.

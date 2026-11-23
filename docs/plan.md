@@ -17,7 +17,7 @@ Une las fases de las dos propuestas en un solo orden. La parte multimarca va **a
 
 La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 
-**Fuera de fase, ya hecho:** mails en subcarpetas de `examples/`, aliases de import (`#brands/nhss`, `#core/…`) y soporte `.tsx` con `Raw` y `Var` ([tsx-y-raw.md](tsx-y-raw.md)).
+**Fuera de fase, ya hecho:** mails en subcarpetas de `mails/` (antes `examples/`), aliases de import (`#brands/nhss`, `#core/…`) y soporte `.tsx` con `Raw` y `Var` ([tsx-y-raw.md](tsx-y-raw.md)).
 
 ---
 

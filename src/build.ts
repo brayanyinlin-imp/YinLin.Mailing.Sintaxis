@@ -1,6 +1,6 @@
 /**
- * Genera dist/<ruta>.html a partir de cada examples/<ruta>.ts o .tsx, incluidas las subcarpetas.
- * La estructura se replica: examples/tucambista/fide.ts → dist/tucambista/fide.html
+ * Genera dist/<ruta>.html a partir de cada mails/<ruta>.ts o .tsx, incluidas las subcarpetas.
+ * La estructura se replica: mails/tucambista/fide.ts → dist/tucambista/fide.html
  *   pnpm build              → todos
  *   pnpm build iphone       → solo los que contengan "iphone" en la ruta
  *   pnpm build tucambista/  → solo los de esa carpeta
@@ -12,7 +12,7 @@ import { rawUsage } from '#components/base/raw'
 import { checkHandlebarsTemplate } from './index.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
-const srcDir = join(root, 'examples')
+const srcDir = join(root, 'mails')
 const outDir = join(root, 'dist')
 const filter = process.argv[2] ?? ''
 
@@ -59,5 +59,5 @@ for (const [raw, mails] of raws) {
   if (mails.length > 1) console.warn(`⚠ Raw "${raw}" se usa en ${mails.length} mails (${mails.join(', ')}): conviértelo en componente`)
 }
 
-if (files.length === 0) console.warn(`No hay mails en examples/ que coincidan con "${filter}"`)
+if (files.length === 0) console.warn(`Ningún archivo de mails/ coincide con "${filter}"`)
 process.exit(failed > 0 ? 1 : 0)

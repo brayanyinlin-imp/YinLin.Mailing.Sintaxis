@@ -2,7 +2,7 @@
  * Servidor de desarrollo con hot reload, sin dependencias.
  *   pnpm dev → http://localhost:5173
  *
- * - Observa src/ y examples/. Ante un cambio, regenera dist/ en un proceso nuevo
+ * - Observa src/ y mails/. Ante un cambio, regenera dist/ en un proceso nuevo
  *   (así no hay caché de módulos) y avisa al navegador para que recargue.
  * - El script de recarga se inyecta al servir; los archivos de dist/ quedan limpios.
  * - Si el build falla, el error se muestra encima del mail sin perder la vista.
@@ -57,7 +57,7 @@ const build = (): void => {
 
 // ── Watch ────────────────────────────────────────────────────────────────────
 let timer: NodeJS.Timeout | undefined
-for (const dir of ['src', 'examples']) {
+for (const dir of ['src', 'mails']) {
   watch(join(root, dir), { recursive: true }, (_event, file) => {
     if (!file) return
     clearTimeout(timer)
@@ -134,6 +134,6 @@ createServer(async (req, res) => {
     res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }).end(`No existe ${path}`)
   }
 }).listen(PORT, () => {
-  console.log(`Mailings en http://localhost:${PORT}  (observando src/ y examples/)`)
+  console.log(`Mailings en http://localhost:${PORT}  (observando src/ y mails/)`)
   build()
 })
