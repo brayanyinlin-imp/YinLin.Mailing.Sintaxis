@@ -1,6 +1,8 @@
 import { Disclaimer, Footer, Image, Layout, Text, utm } from "#brands/nhss";
 
-const u = utm({ campaign: "23nov_b_activos_correos_nochances_engaged_promo2_1" });
+const u = utm({
+  campaign: "23nov_b_activos_correos_nochances_engaged_promo2_1",
+});
 const premios = u.link("/premios");
 
 export default Layout({
@@ -38,10 +40,19 @@ export default Layout({
       html: (
         <>
           Solo válido para el{" "}
-          <strong>
-            2do departamento amoblado de 71.08 m² en Miraflores + cochera
-          </strong>{" "}
-          de <strong>este 31 de diciembre.</strong>
+          <span class="fw-700">
+            <strong>
+              <b>
+                2do departamento amoblado de 71.08 m² en Miraflores + cochera
+              </b>
+            </strong>
+          </span>{" "}
+          de{" "}
+          <span class="fw-700">
+            <strong>
+              <b>este 31 de diciembre.</b>
+            </strong>
+          </span>
         </>
       ),
     }),
@@ -54,8 +65,12 @@ export default Layout({
       variant: "body",
       html: (
         <>
-          <span class="fw-700 text-secondary">Recuerda:</span> Compra mínima
-          S/20 chances y máxima de S/300
+          <span class="fw-700 text-secondary">
+            <strong>
+              <b>Recuerda:</b>
+            </strong>
+          </span>{" "}
+          Compra mínima S/20 chances y máxima de S/300
         </>
       ),
       padding: [0, 20],
