@@ -40,5 +40,9 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+
+    // Se ejecuta con tsx (no se compila a JS): imports con extensión .ts
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
   }
 }
