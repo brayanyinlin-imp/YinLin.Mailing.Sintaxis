@@ -1,4 +1,5 @@
 import { asset, table, type Html } from "../../core/html.ts";
+import nhss from "./brand.ts";
 
 const FOOTER_BG = "#ce83fd";
 
@@ -21,7 +22,7 @@ const SOCIAL = [
 ];
 
 const icon = (s: (typeof SOCIAL)[number]): Html =>
-  `<td align="center" style="padding:0 10px"><a href="${s.href}" target="_blank"><img src="${asset(s.icon)}" width="30" alt="${s.name}" style="display:block;border:0"></a></td>`;
+  `<td align="center" style="padding:0 10px"><a href="${s.href}" target="_blank"><img src="${asset(nhss.assets, s.icon)}" width="30" alt="${s.name}" style="display:block;border:0"></a></td>`;
 
 export interface FooterProps {
   /** Link de "Términos & condiciones" (p. ej. los T&C de una promo). Por defecto, /terminos-y-condiciones. */
@@ -37,7 +38,7 @@ export const Footer = ({
       `<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto"><tr>` +
       `<td align="center" style="padding-right:20px;border-right:1px solid #ffffff">` +
       `<a href="https://jorgitoluna.com?utm_source=newsletter&utm_medium=email" target="_blank">` +
-      `<img src="${asset("NHSS_LOGO.png")}" width="47" height="47" alt="No hay sin suerte" style="display:block;border:0"></a></td>` +
+      `<img src="${asset(nhss.assets, "NHSS_LOGO.png")}" width="47" height="47" alt="No hay sin suerte" style="display:block;border:0"></a></td>` +
       `<td width="20"></td>` +
       `<td align="center"><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr>${SOCIAL.map(icon).join("")}</tr></table></td>` +
       `</tr></table></td></tr>`,

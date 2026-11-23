@@ -1,3 +1,4 @@
+import type { Brand } from '../../core/brand.ts'
 import { esc, type Html } from '../../core/html.ts'
 import { buildStyles } from '../../core/styles.ts'
 
@@ -6,7 +7,7 @@ export interface LayoutProps {
   subject: string
   /** Texto de vista previa en la bandeja (~90 caracteres). */
   preheader: string
-  /** CSS adicional solo para este mail; se agrega después de base.css. */
+  /** CSS adicional solo para este mail; se agrega después del CSS de la marca y common.css. */
   css?: string
   body: Html[]
 }
@@ -16,8 +17,10 @@ const PREHEADER_FILLER = '&zwnj;&nbsp;'.repeat(70)
 
 const hidden = 'display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all'
 
-/** Documento completo: head, estilos, preheader y contenedor de 600px. */
-export const Layout = ({ subject, preheader, css = '', body }: LayoutProps): Html => `<!DOCTYPE html>
+/** Documento completo: head, estilos de la marca, preheader y contenedor de 600px. */
+export const createLayout =
+  (brand: Brand) =>
+  ({ subject, preheader, css = '', body }: LayoutProps): Html => `<!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
@@ -27,7 +30,7 @@ export const Layout = ({ subject, preheader, css = '', body }: LayoutProps): Htm
 <meta name="supported-color-schemes" content="light">
 <title>${esc(subject)}</title>
 <style type="text/css">
-${buildStyles(css)}
+${buildStyles(brand, css)}
 </style>
 </head>
 <body style="margin:0;padding:0;background-color:#ffffff">

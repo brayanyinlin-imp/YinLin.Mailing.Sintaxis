@@ -1,4 +1,5 @@
 import { table, type Html } from '../../core/html.ts'
+import brand from './brand.ts'
 
 export const LEGAL_ENTITY = 'NO HAY SIN SUERTE - Dame Tu Plata S.A.C.'
 
@@ -14,7 +15,7 @@ export const Disclaimer = ({ extra = [], year = new Date().getFullYear() }: Disc
   const lines = [
     ...extra,
     'Si prefieres no recibir más correos nuestros, puedes hacer ' +
-      '<a href="https://jorgitoluna.com/desuscribirse?email={{email}}" target="_blank" style="color:#00ffff;text-decoration:underline">clic aquí</a>',
+      `<a href="${brand.site}/desuscribirse?email={{email}}" target="_blank" style="color:#00ffff;text-decoration:underline">clic aquí</a>`,
     'Te pedimos que no respondas a este correo. Si tienes alguna pregunta, no dudes en escribirnos a nuestra cuenta de Instagram',
     '@nohaysinsuerte o enviar un correo electrónico a soporte@nohaysinsuerte.com',
     `Este mensaje fue enviado por ${LEGAL_ENTITY}`,

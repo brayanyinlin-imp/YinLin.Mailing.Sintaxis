@@ -1,8 +1,8 @@
 // Migración de templates/specials/iphone.html
-import { campaign, Disclaimer, Footer, Image, Layout, Text } from '../src/components/index.ts'
+import { Disclaimer, Footer, Image, Layout, Text, utm } from '../src/brands/nhss/index.ts'
 
-const c = campaign({ utm: '17nov_b_activos_iphone_2x1' })
-const premios = c.link('/premios')
+const u = utm({ campaign: '17nov_b_activos_iphone_2x1' })
+const premios = u.link('/premios')
 
 export default Layout({
   subject: 'El iPhone 18 Pro Max llegó con 2x1 en chances',
@@ -26,6 +26,7 @@ export default Layout({
       width: '80%',
       href: premios,
       padding: [10, 20],
+      
     }),
     Text({ variant: 'note', html: 'Promoción válida hasta el 19 de noviembre a las 11:59 am' }),
     Image({

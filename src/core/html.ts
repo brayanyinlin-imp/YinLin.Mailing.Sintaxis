@@ -10,14 +10,12 @@ export type Html = string
 export type Width = number | `${number}%`
 export type Padding = [top: number, bottom: number]
 
-export const ASSET_BASE = 'https://stnohaysinsuerteprod.blob.core.windows.net/mailing/'
-
 /** Escapa texto plano para usarlo en un atributo o como contenido. */
 export const esc = (s: string): string =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-/** Acepta el nombre de un archivo del blob o una URL https absoluta. */
-export const asset = (src: string): string => (src.startsWith('https://') ? src : ASSET_BASE + src)
+/** Acepta el nombre de un archivo del blob de la marca (`base`) o una URL https absoluta. */
+export const asset = (base: string, src: string): string => (src.startsWith('https://') ? src : base + src)
 
 /** Ancho como valor CSS: 211 → "211px", "80%" → "80%". */
 export const cssWidth = (w: Width): string => (typeof w === 'number' ? `${w}px` : w)

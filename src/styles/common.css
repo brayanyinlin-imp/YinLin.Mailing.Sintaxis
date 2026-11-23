@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap");
-
-/* Fuente única de estilos de los mailings.
+/* Estilos comunes a todas las marcas. El CSS de cada marca (fuentes, paleta) va antes.
    - Valores literales: los clientes de correo no soportan var().
    - Solo clases que se usan. Lo estructural (padding, anchos, display) lo ponen los componentes inline. */
 
@@ -12,8 +10,6 @@ img { border: 0; outline: none; text-decoration: none; }
 a { text-decoration: none; }
 
 /* TIPOGRAFÍA */
-.font-main { font-family: "Radio Canada Big", Arial, sans-serif; }
-.font-legal { font-family: "PT Sans", Arial, sans-serif; }
 .font-italic { font-style: italic; }
 .fw-400 { font-weight: 400; }
 .fw-700 { font-weight: 700; }
@@ -27,14 +23,6 @@ a { text-decoration: none; }
 .fs-20 { font-size: 20px; line-height: 26px; }
 .fs-24 { font-size: 24px; line-height: 30px; }
 .fs-30 { font-size: 30px; line-height: 36px; }
-
-/* COLORES */
-.text-main      { color: #2d3543; }
-.text-primary   { color: #6c1297; }
-.text-secondary { color: #b84fff; }
-.text-tertiary  { color: #7d8a9e; }
-.text-white     { color: #ffffff; }
-.text-cyan      { color: #00ffff; }
 
 /* ESPACIADO (para HTML escrito a mano dentro de Raw; los componentes usan su prop padding) */
 .pt-5  { padding-top: 5px; }
@@ -50,9 +38,3 @@ a { text-decoration: none; }
 .box-360 { width: 360px; max-width: 100%; margin: 0 auto; }
 .box-440 { width: 440px; max-width: 100%; margin: 0 auto; }
 .box-470 { width: 470px; max-width: 100%; margin: 0 auto; }
-
-/* FOOTER Y LEGAL */
-.footer-text { font-family: "PT Sans", Arial, sans-serif; font-weight: 400; text-align: center; font-size: 10px; line-height: 17px; color: #ffffff; margin: 0; }
-.footer-text a { color: #ffffff; text-decoration: underline; }
-.disclaimer-item { font-family: "PT Sans", Arial, sans-serif; font-weight: 700; text-align: center; font-size: 8px; line-height: 10px; color: #b84fff; margin: 0; }
-.disclaimer-item a { color: #00ffff; text-decoration: underline; }

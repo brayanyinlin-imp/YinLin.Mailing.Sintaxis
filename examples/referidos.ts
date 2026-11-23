@@ -1,8 +1,14 @@
-import { Disclaimer, Footer, Image, Layout } from "../src/components/index.ts";
-import { campaign } from "../src/core/campaign.ts";
+import {
+  Disclaimer,
+  Footer,
+  Image,
+  Layout,
+  Text,
+  utm,
+} from "../src/brands/nhss/index.ts";
 
-const c = campaign({ utm: "20nov_activos_referidos" });
-const redirect = c.link("/mi-cuenta/chances");
+const u = utm({ campaign: "20nov_activos_referidos" });
+const redirect = u.link("/mi-cuenta/chances");
 
 export default Layout({
   subject: "Tu amigo se suscribió y te regalamos 10 chances",
@@ -12,6 +18,10 @@ export default Layout({
       src: "NHSSV2_TU_AMIGO_SE_SUSCRIBIO_Y_TE_REGALO_10_CHANCES_BANNER.png",
       alt: "Tu amigo se suscribió y te regalamos 10 chances",
       href: redirect,
+    }),
+    Text({
+      html: "<p>Tu amigo se suscribió al Plan Opulencia usando tu código {{ReferralCode}}</p>",
+      padding: [10, 10],
     }),
     Footer(),
     Disclaimer(),

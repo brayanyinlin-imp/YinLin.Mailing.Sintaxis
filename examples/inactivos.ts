@@ -1,8 +1,8 @@
 // Migración de templates/semanal/inactivos.html
-import { campaign, Disclaimer, Footer, Image, Layout, Text } from '../src/components/index.ts'
+import { Disclaimer, Footer, Image, Layout, Text, utm } from '../src/brands/nhss/index.ts'
 
-const c = campaign({ utm: '09nov_a_inactivos_8_autos_2_depa' })
-const suscripciones = c.link('/suscripciones')
+const u = utm({ campaign: '09nov_a_inactivos_8_autos_2_depa' })
+const suscripciones = u.link('/suscripciones')
 
 export default Layout({
   subject: '8 carros y 2 departamentos desde S/21',
