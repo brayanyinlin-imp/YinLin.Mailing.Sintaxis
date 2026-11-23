@@ -19,6 +19,13 @@
     }
   },
   "type": "module",
+  "imports": {
+    "#brands/*": "./src/brands/*/index.ts",
+    "#components": "./src/components/index.ts",
+    "#components/*": "./src/components/*.ts",
+    "#core/*": "./src/core/*.ts",
+    "#jsx/*": "./src/jsx/*.ts"
+  },
   "dependencies": {
     "handlebars": "4.7.9"
   },

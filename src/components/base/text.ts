@@ -1,4 +1,4 @@
-import { box as boxTable, row, table, type Html, type Padding } from '../../core/html.ts'
+import { box as boxTable, row, table, type Html, type Padding } from '#core/html'
 
 export type TextVariant = 'body' | 'highlight' | 'primary' | 'note'
 

@@ -80,6 +80,19 @@ src/
       brand.ts · index.ts · footer.ts · legal.ts · styles.css
 ```
 
+### Aliases de import ✅
+
+Definidos en `package.json` (`"imports"`, nativo de Node; TypeScript y tsx los resuelven sin configuración extra):
+
+| Alias | Apunta a | Uso |
+|---|---|---|
+| `#brands/<marca>` | `src/brands/<marca>/index.ts` | Lo que importa un mail: `import { Layout, Image, utm } from '#brands/nhss'` |
+| `#components` | `src/components/index.ts` | Piezas sin marca (`createKit`, tipos) |
+| `#components/<ruta>` | `src/components/<ruta>.ts` | `#components/kit`, `#components/base/image` |
+| `#core/<módulo>` | `src/core/<módulo>.ts` | `#core/html`, `#core/utm`, `#core/brand` |
+
+Un mail se importa igual sin importar en qué subcarpeta de `examples/` esté. Dentro de una misma carpeta se siguen usando imports relativos (`./brand.ts`).
+
 ## 5. La marca
 
 ```ts
@@ -129,7 +142,7 @@ export { Disclaimer } from './disclaimer.ts'
 Reemplaza a `campaign()`. La URL se arma desde un **objeto de query params** y se serializa al final con `toQuery()`.
 
 ```ts
-import { utm } from '../src/brands/nhss/index.ts'
+import { utm } from '#brands/nhss'
 
 const u = utm({
   campaign: '22nov_activos_premios',            // utm_campaign
@@ -200,7 +213,7 @@ Switch('level', {
 ## 9. Ejemplo: `fide.html` con componentes
 
 ```ts
-import { Image, Layout, Switch, Text, utm } from '../src/brands/tucambista/index.ts'
+import { Image, Layout, Switch, Text, utm } from '#brands/tucambista'
 
 const u = utm({ campaign: 'bienvenida_society' })
 const op = '/go/app/operacion'

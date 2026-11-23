@@ -1,5 +1,5 @@
 // Migración de templates/specials/iphone.html
-import { Disclaimer, Footer, Image, Layout, Text, utm } from '../src/brands/nhss/index.ts'
+import { Disclaimer, Footer, Image, Layout, Text, utm } from '#brands/nhss'
 
 const u = utm({ campaign: '17nov_b_activos_iphone_2x1' })
 const premios = u.link('/premios')

@@ -1,6 +1,6 @@
-import type { Brand } from '../../core/brand.ts'
-import { esc, type Html } from '../../core/html.ts'
-import { buildStyles } from '../../core/styles.ts'
+import type { Brand } from '#core/brand'
+import { esc, type Html } from '#core/html'
+import { buildStyles } from '#core/styles'
 
 export interface LayoutProps {
   /** Asunto del correo; también se usa como <title>. */

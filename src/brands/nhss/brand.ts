@@ -1,4 +1,4 @@
-import { defineBrand } from '../../core/brand.ts'
+import { defineBrand } from '#core/brand'
 
 /** No Hay Sin Suerte. Los links pasan por el login y vuelven a la ruta con returnUrl. */
 export default defineBrand({
@@ -7,6 +7,6 @@ export default defineBrand({
   assets: 'https://stnohaysinsuerteprod.blob.core.windows.net/mailing/',
   utm: { source: 'newsletter', medium: 'email' },
   link: (path) => ({ path: '/iniciar-sesion', query: { returnUrl: path } }),
-  personalization: { email: '{{email}}', internalId: '{{internalId}}' },
+  personalization: { },
   styles: new URL('./styles.css', import.meta.url),
 })

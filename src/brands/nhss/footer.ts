@@ -1,4 +1,4 @@
-import { asset, table, type Html } from "../../core/html.ts";
+import { asset, table, type Html } from "#core/html";
 import nhss from "./brand.ts";
 
 const FOOTER_BG = "#ce83fd";

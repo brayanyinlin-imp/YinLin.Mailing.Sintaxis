@@ -1,8 +1,10 @@
-import type { Brand } from '../core/brand.ts'
-import { createUtm } from '../core/utm.ts'
+import type { Brand } from '#core/brand'
+import { createUtm } from '#core/utm'
 import { createImage } from './base/image.ts'
 import { createLayout } from './base/layout.ts'
+import { Raw } from './base/raw.ts'
 import { Text } from './base/text.ts'
+import { Var } from './base/var.ts'
 
 /**
  * Componentes base atados a una marca. Cada marca lo expone desde su index.ts,
@@ -13,5 +15,7 @@ export const createKit = (brand: Brand) => ({
   Layout: createLayout(brand),
   Image: createImage(brand),
   Text,
+  Raw,
+  Var,
   utm: createUtm(brand),
 })

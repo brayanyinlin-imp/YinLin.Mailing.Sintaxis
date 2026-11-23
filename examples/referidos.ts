@@ -5,7 +5,7 @@ import {
   Layout,
   Text,
   utm,
-} from "../src/brands/nhss/index.ts";
+} from "#brands/nhss";
 
 const u = utm({ campaign: "20nov_activos_referidos" });
 const redirect = u.link("/mi-cuenta/chances");

@@ -1,7 +1,7 @@
 # Plan de implementación
 
-> **Fecha:** 2026-11-20 · **Rama actual:** `feat/componentes-fase-1`
-> **Detalle de diseño:** [propuesta-componentes.md](propuesta-componentes.md) y [propuesta-multimarca.md](propuesta-multimarca.md)
+> **Fecha:** 2026-11-23 · **Rama actual:** `feat/tsx-raw`
+> **Detalle de diseño:** [propuesta-componentes.md](propuesta-componentes.md), [propuesta-multimarca.md](propuesta-multimarca.md) y [tsx-y-raw.md](tsx-y-raw.md)
 
 Une las fases de las dos propuestas en un solo orden. La parte multimarca va **antes de los compuestos**, para que estos nazcan sin una marca fija.
 
@@ -11,11 +11,13 @@ Une las fases de las dos propuestas en un solo orden. La parte multimarca va **a
 | 2 | Validaciones | ⏳ Pendiente | 1 |
 | 3 | Marca configurable (extraer NHSS) | ✅ Hecha | 1 |
 | 4 | `Switch` por segmento | ⏳ Pendiente | 3 |
-| 5 | Componentes compuestos | ⏳ Pendiente | 3 |
+| 5 | Componentes compuestos | ⏳ Pendiente (`Raw` ✅) | 3 |
 | 6 | Segunda marca: TuCambista | ⏳ Pendiente | 3, 4 · decisiones M3–M6 |
 | 7 | Migración de templates recurrentes | ⏳ Pendiente | 2, 5 · decisión P1 / M1 |
 
 La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
+
+**Fuera de fase, ya hecho:** mails en subcarpetas de `examples/`, aliases de import (`#brands/nhss`, `#core/…`) y soporte `.tsx` con `Raw` y `Var` ([tsx-y-raw.md](tsx-y-raw.md)).
 
 ---
 
@@ -67,7 +69,7 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 | `CodeBadge` | "CÓDIGO: {{lukerscode}}" con fondo |
 | `Button` | Botón HTML y `mailto:` (decisión **P3** frente a PNG) |
 | `Spacer` | Espacios verticales sueltos |
-| `Raw` | HTML a mano para piezas únicas, con las mismas validaciones |
+| `Raw` ✅ | HTML a mano para piezas únicas (string en `.ts`, JSX en `.tsx`); el build avisa si se repite en otro mail. Ver [tsx-y-raw.md](tsx-y-raw.md) |
 
 **Listo cuando:** `aniversario_grupo_1` y `renovacion_anticipada` se regeneran con componentes y se ven igual. Si solo cambian datos entre grupos, se resuelve **P5**.
 

@@ -1,4 +1,4 @@
-import { table, type Html } from '../../core/html.ts'
+import { table, type Html } from '#core/html'
 import brand from './brand.ts'
 
 export const LEGAL_ENTITY = 'NO HAY SIN SUERTE - Dame Tu Plata S.A.C.'
