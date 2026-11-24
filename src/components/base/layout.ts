@@ -49,7 +49,7 @@ ${styles}
 <div style="${hidden}" aria-hidden="true">${esc(preheader)}</div>
 <div style="${hidden}" aria-hidden="true">${PREHEADER_FILLER}</div>
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="background-color:#ffffff"><tr><td align="center">
-<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width:600px;max-width:100%"><tr><td>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width:100%;max-width:600px"><tr><td>
 ${content}
 </td></tr></table>
 </td></tr></table>

@@ -26,9 +26,13 @@ const presentation = 'role="presentation" border="0" cellpadding="0" cellspacing
 export const table = (rows: Html, bg = '#ffffff'): Html =>
   `<table ${presentation} width="100%" bgcolor="${bg}" style="border-collapse:collapse;background-color:${bg}">${rows}</table>`
 
-/** Tabla de presentación de ancho fijo y centrada (cajas de texto, contenedores). */
+/**
+ * Tabla de presentación de ancho fijo y centrada (cajas de texto, contenedores).
+ * width:100% + max-width en px, no al revés: en una <table>, `width:Npx; max-width:100%` no se achica
+ * (navegadores y Gmail ignoran el max-width) y el mail desborda en móvil. El atributo width es para Outlook.
+ */
 export const box = (rows: Html, width: number): Html =>
-  `<table ${presentation} width="${width}" align="center" style="border-collapse:collapse;width:${width}px;max-width:100%;margin:0 auto">${rows}</table>`
+  `<table ${presentation} width="${width}" align="center" style="border-collapse:collapse;width:100%;max-width:${width}px;margin:0 auto">${rows}</table>`
 
 /**
  * Una fila con una celda centrada.
