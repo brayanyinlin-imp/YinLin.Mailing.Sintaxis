@@ -229,7 +229,7 @@ export default Layout({
 | # | Tema | Contexto |
 |---|---|---|
 | **P1** | **Acumulación de código de mailings** | Si cada envío es un archivo `.ts`, el repo acumula cientos de definiciones de un solo uso. Opciones a evaluar: archivar por fecha, tratar los mails como datos (JSON) fuera del repo, o versionar solo plantillas reutilizables (semanal, birthday, antichurn) y que lo puntual viva en otro lugar. |
-| **P2** | **Inlinear CSS** | Algunos clientes eliminan el `<style>`. Hoy el riesgo existe igual que en los templates actuales y se mitiga poniendo lo estructural inline en los componentes. La solución completa (por ejemplo, `juice` en el transform) agrega una dependencia y se pospone. |
+| **P2** | **Inlinear CSS** | Algunos clientes eliminan el `<style>`. Hoy el riesgo existe igual que en los templates actuales y se mitiga poniendo lo estructural inline en los componentes. La solución completa (por ejemplo, `juice` en el transform) agrega una dependencia y se pospone. **✅ Resuelto:** `juice` corre al final del build y conserva el `<style>` ([tailwind.md](tailwind.md)). |
 | P3 | Botones PNG o HTML | Los PNG mantienen el diseño, pero se pierden si el cliente bloquea imágenes. `Image` y `Button` conviven mientras tanto. |
 | P4 | Variantes A/B (`{{#equals type}}`) | Pueden quedarse como hoy, resueltas en el envío, o generarse como dos HTML. |
 | P5 | `aniversario_grupo_1/2/3` | Si solo cambian datos, podrían ser un mail parametrizado (sin verificar). |

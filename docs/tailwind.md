@@ -1,7 +1,7 @@
 # Tailwind para email (`@maizzle/tailwindcss`)
 
 > **Estado:** implementado · **Fecha:** 2026-11-23
-> **Relacionado:** [tsx-y-raw.md](tsx-y-raw.md), [plan.md](plan.md) (P2: inlinear CSS, pendiente)
+> **Relacionado:** [tsx-y-raw.md](tsx-y-raw.md), [plan.md](plan.md) (P2: inlinear CSS, resuelto con juice)
 
 ## Para qué
 
@@ -58,8 +58,8 @@ Se suma al tema del preset: paleta de Tailwind en hex (`text-red-500`), espaciad
 - **Tablas para el layout, Tailwind para el estilo.** `flex`, `grid`, `gap-*` y `m-*` compilan, pero Outlook no los soporta.
 - **No definir en `common.css` o `styles.css` clases con nombre de utilidad de Tailwind**: la de Tailwind lleva `!important` y gana. Por eso se quitaron `pt-*`/`pb-*` de `common.css` (eran de 5–30px; en Tailwind `pt-10` = 40px).
 - Las clases propias (`fs-16`, `fw-700`, `font-italic`, `footer-text`) siguen funcionando. Tailwind ignora las que no reconoce.
-- **El CSS va en el `<style>`, no inline.** Si un cliente elimina el `<style>`, se pierde. Pasarlo a inline es P2 (`juice`), pendiente.
+- **El build pasa el CSS a `style=""` con juice** ([inline.ts](../src/core/inline.ts)) y además conserva el `<style>`. Si un cliente elimina el `<style>`, el mail se ve igual salvo lo que no se puede inlinear: el `@import` de fuentes (cae a Arial), `@media` (`sm:`), `:hover` y las variantes por cliente. `pnpm build --no-inline` genera sin este paso.
 
 ## Dependencias (todas de desarrollo)
 
-`tailwindcss`, `@tailwindcss/node`, `@tailwindcss/oxide`, `@maizzle/tailwindcss`, `lightningcss`.
+`tailwindcss`, `@tailwindcss/node`, `@tailwindcss/oxide`, `@maizzle/tailwindcss`, `lightningcss` y `juice` (inline).

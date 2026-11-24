@@ -96,7 +96,7 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 | # | Tema | Bloquea |
 |---|---|---|
 | P1 / M1 | Dónde viven los mails (por marca, por fecha, fuera del repo) | Fase 7 |
-| P2 | Inlinear CSS (`juice`, nueva dependencia). Con Tailwind pesa más: sus utilidades solo viven en el `<style>` | — (mejora posterior) |
+| P2 | ~~Inlinear CSS~~ ✅ `juice` en el build (`src/core/inline.ts`); se conserva el `<style>` | Resuelto |
 | P3 | Botones PNG o HTML | Fase 5 (`Button`) |
 | P4 | Variantes A/B | Resuelta por la Fase 4 |
 | P5 | `aniversario_grupo_1/2/3` como un mail parametrizado | Fase 5 |

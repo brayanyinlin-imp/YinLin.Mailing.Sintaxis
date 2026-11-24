@@ -4,17 +4,21 @@
  *   pnpm build              → todos
  *   pnpm build iphone       → solo los que contengan "iphone" en la ruta
  *   pnpm build tucambista/  → solo los de esa carpeta
+ *   pnpm build --no-inline  → sin pasar el CSS a style="" (para comparar o depurar)
  */
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { rawUsage } from '#components/base/raw'
+import { inlineCss } from '#core/inline'
 import { checkHandlebarsTemplate } from './index.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const srcDir = join(root, 'mails')
 const outDir = join(root, 'dist')
-const filter = process.argv[2] ?? ''
+const args = process.argv.slice(2)
+const inline = !args.includes('--no-inline')
+const filter = args.find((a) => !a.startsWith('--')) ?? ''
 
 mkdirSync(outDir, { recursive: true })
 
@@ -38,8 +42,9 @@ for (const file of files) {
     rawUsage.length = 0
     const mod: { default?: unknown } = await import(pathToFileURL(join(srcDir, file)).href)
     // Layout() devuelve una promesa (Tailwind compila de forma asíncrona).
-    const html = await mod.default
-    if (typeof html !== 'string') throw new Error('el export default debe ser el resultado de Layout()')
+    const rendered = await mod.default
+    if (typeof rendered !== 'string') throw new Error('el export default debe ser el resultado de Layout()')
+    const html = inline ? inlineCss(rendered) : rendered
 
     const out = join(outDir, `${name}.html`)
     mkdirSync(dirname(out), { recursive: true })
