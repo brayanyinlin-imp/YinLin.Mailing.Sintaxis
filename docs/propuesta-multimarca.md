@@ -199,19 +199,28 @@ Cualquier otro param (incluidos `utm_*` propios como `utm_media_content` o `utm_
 
 Orden de inyección: **marca → común → `css` del mail → utilidades de Tailwind**. La marca va primero porque su `@import` debe ser la primera regla. `Text({ variant: 'primary' })` produce `text-primary` en ambas marcas; en NHSS es `#6c1297` y en TuCambista sería `#1D63FF`.
 
-## 8. `Switch`: contenido por segmento
+## 8. `Switch`: contenido por segmento ✅
 
-Genera la cadena `{{#equals}}…{{else}}…{{/equals}}` que hoy se escribe a mano. Sirve para el `type` de NHSS y el `level` de TuCambista.
+Genera la cadena `{{#equals}}…{{else equals}}…{{else}}…{{/equals}}` que hoy se escribe a mano: la forma encadenada que ya usan `beneficios.html` y `bienvenida_mail`. Sirve para el `type` de NHSS y el `level` de TuCambista.
 
 ```ts
-Switch('level', {
-  FUNDADOR: Image({ src: 'card_fundador.png', alt: 'Nivel Fundador', href: u.link(op, { content: 'escudo' }) }),
-  MAGNATE:  Image({ src: 'card_magnate.png',  alt: 'Nivel Magnate',  href: u.link(op, { content: 'escudo' }) }),
-  DIRECTOR: Image({ src: 'card_director.png', alt: 'Nivel Director', href: u.link(op, { content: 'escudo' }) }),
+import { Switch } from '#brands/nhss'
+
+Switch({
+  on: 'type',
+  cases: {
+    A: [Text({ html: 'Solo para A' }), Image({ … })],   // uno o varios bloques
+    B: Text({ html: 'Solo para B' }),
+  },
+  default: Text({ html: 'Para el resto' }),             // opcional
 })
+// → {{#equals type "A"}}…{{else equals type "B"}}…{{else}}…{{/equals}}
 ```
 
-- Se envuelve **solo lo que cambia**, no el `<body>` entero. `fide.html` hoy repite el mail completo tres veces (892 líneas, 45 KB).
+- Va en el `body` como cualquier bloque y se envuelve **solo lo que cambia**, no el `<body>` entero. `fide.html` hoy repite el mail completo tres veces (892 líneas, 45 KB).
+- Sin `default`, quien no coincide con ningún caso no ve nada en ese punto.
+- El build falla si `on` no es un nombre de variable, si no hay casos o si un valor lleva comillas o llaves.
+- **Vista previa por segmento:** en `pnpm dev`, `…/mail.html?type=A` renderiza el mail con Handlebars y esos datos (cualquier otro parámetro también: `&name=Ana`). Sin parámetros se ve el HTML con todas las ramas.
 - Si se necesita en varios puntos del mail, se escribe un `Switch` por bloque o se arma el cuerpo con un `.map()` sobre los niveles.
 - Relación con **P4** (variantes A/B): `Switch` es la forma estándar de resolverlas en el envío.
 
@@ -225,7 +234,7 @@ const op = '/go/app/operacion'
 
 const LEVELS = { FUNDADOR: 'Fundador', MAGNATE: 'Magnate', DIRECTOR: 'Director' }
 const byLevel = (fn: (key: string, label: string) => string) =>
-  Switch('level', Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [k, fn(k.toLowerCase(), v)])))
+  Switch({ on: 'level', cases: Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [k, fn(k.toLowerCase(), v)])) })
 
 export default Layout({
   subject: '¡Bienvenido a TuCambista Society!',

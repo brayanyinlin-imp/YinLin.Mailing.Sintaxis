@@ -4,6 +4,7 @@ import { createUtm } from '#core/utm'
 import { createImage } from './base/image.ts'
 import { createLayout } from './base/layout.ts'
 import { Raw } from './base/raw.ts'
+import { Switch } from './base/switch.ts'
 import { Text } from './base/text.ts'
 import { Var } from './base/var.ts'
 
@@ -17,6 +18,7 @@ export const createKit = (brand: Brand) => ({
   Image: createImage(brand),
   Text,
   Raw,
+  Switch,
   Var,
   utm: createUtm(brand),
 })

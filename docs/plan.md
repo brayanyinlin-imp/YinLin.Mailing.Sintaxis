@@ -10,7 +10,7 @@ Une las fases de las dos propuestas en un solo orden. La parte multimarca va **a
 | 1 | Núcleo | ✅ Hecha (PR #1) | — |
 | 2 | Validaciones | ⏳ Pendiente | 1 |
 | 3 | Marca configurable (extraer NHSS) | ✅ Hecha | 1 |
-| 4 | `Switch` por segmento | ⏳ Pendiente | 3 |
+| 4 | `Switch` por segmento | ✅ Hecha | 3 |
 | 5 | Componentes compuestos | ⏳ Pendiente (`Raw` ✅) | 3 |
 | 6 | Segunda marca: TuCambista | ⏳ Pendiente | 3, 4 · decisiones M3–M6 |
 | 7 | Migración de templates recurrentes | ⏳ Pendiente | 2, 5 · decisión P1 / M1 |
@@ -53,9 +53,9 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 
 ## Fase 4 · `Switch`
 
-**Entregable:** `Switch(variable, { VALOR: html, … })`, que genera la cadena `{{#equals}}…{{else}}…{{/equals}}` y envuelve solo lo que cambia. Resuelve **P4** (variantes A/B).
+**Entregable:** `Switch({ on, cases, default })`, que genera la cadena `{{#equals}}…{{else equals}}…{{else}}…{{/equals}}` y envuelve solo lo que cambia. Resuelve **P4** (variantes A/B). Ver [propuesta-multimarca.md §8](propuesta-multimarca.md).
 
-**Listo cuando:** un mail de NHSS con `type` A/B se arma con `Switch` y compila en Handlebars.
+**Listo cuando:** un mail de NHSS con `type` A/B se arma con `Switch` y compila en Handlebars. ✔ Verificado: renderizado con Handlebars y un helper `equals`, cada `type` (A, B y otro) ve solo su bloque, también después de juice. Vista previa por segmento en `pnpm dev` con `?type=A`.
 
 ## Fase 5 · Componentes compuestos
 
