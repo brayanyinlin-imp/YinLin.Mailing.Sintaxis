@@ -80,7 +80,19 @@ export default Layout({
         </table>
       ),
     }),
-
+    Text({ html: "Podrás ver tus chances en la sección" }),
+    Text({
+      html: `<span class="fw-700"><strong><b>“MI CUENTA” y “MIS CHANCES”</b></strong></span>`,
+      variant: "body",
+      padding: [0, 20],
+    }),
+    Image({
+      src: "NHSSV2_VER_MIS_CHANCES_BUTTON_V3.png",
+      alt: "Botón Ver mis chances",
+      width: 259,
+      href: chances,
+      padding: [10, 20],
+    }),
     Text({ html: "Sigue compartiendo tu código y gana más chances:" }),
 
     // Tarjeta con borde: código de referido + ícono de copiar
@@ -118,21 +130,6 @@ export default Layout({
         </table>
       ),
     }),
-
-    Text({ html: "Podrás ver tus chances en la sección" }),
-    Text({
-      html: "“MI CUENTA” y “MIS CHANCES”",
-      variant: "primary",
-      padding: [0, 20],
-    }),
-    Image({
-      src: "NHSSV2_VER_MIS_CHANCES_BUTTON_V3.png",
-      alt: "Botón Ver mis chances",
-      width: 259,
-      href: chances,
-      padding: [10, 20],
-    }),
-
     Footer(),
     Disclaimer({
       extra: [
