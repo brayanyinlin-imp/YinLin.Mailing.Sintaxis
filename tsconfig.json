@@ -35,6 +35,8 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
+    // JSX propio (src/jsx): genera strings de HTML para email, sin React. Solo en archivos .tsx
+    "jsxImportSource": "#jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,

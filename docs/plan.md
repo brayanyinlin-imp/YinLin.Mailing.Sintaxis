@@ -1,7 +1,7 @@
 # Plan de implementación
 
-> **Fecha:** 2026-11-20 · **Rama actual:** `feat/componentes-fase-1`
-> **Detalle de diseño:** [propuesta-componentes.md](propuesta-componentes.md) y [propuesta-multimarca.md](propuesta-multimarca.md)
+> **Fecha:** 2026-11-23 · **Rama actual:** `feat/tsx-raw`
+> **Detalle de diseño:** [propuesta-componentes.md](propuesta-componentes.md), [propuesta-multimarca.md](propuesta-multimarca.md) y [tsx-y-raw.md](tsx-y-raw.md)
 
 Une las fases de las dos propuestas en un solo orden. La parte multimarca va **antes de los compuestos**, para que estos nazcan sin una marca fija.
 
@@ -10,12 +10,14 @@ Une las fases de las dos propuestas en un solo orden. La parte multimarca va **a
 | 1 | Núcleo | ✅ Hecha (PR #1) | — |
 | 2 | Validaciones | ⏳ Pendiente | 1 |
 | 3 | Marca configurable (extraer NHSS) | ✅ Hecha | 1 |
-| 4 | `Switch` por segmento | ⏳ Pendiente | 3 |
-| 5 | Componentes compuestos | ⏳ Pendiente | 3 |
+| 4 | `Switch` por segmento | ✅ Hecha | 3 |
+| 5 | Componentes compuestos | ⏳ Pendiente (`Raw` ✅) | 3 |
 | 6 | Segunda marca: TuCambista | ⏳ Pendiente | 3, 4 · decisiones M3–M6 |
 | 7 | Migración de templates recurrentes | ⏳ Pendiente | 2, 5 · decisión P1 / M1 |
 
 La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
+
+**Fuera de fase, ya hecho:** mails en subcarpetas de `mails/` (antes `examples/`), aliases de import (`#brands/nhss`, `#core/…`) y soporte `.tsx` con `Raw` y `Var` ([tsx-y-raw.md](tsx-y-raw.md)) y utilidades de Tailwind con el preset de email de Maizzle ([tailwind.md](tailwind.md)).
 
 ---
 
@@ -51,9 +53,9 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 
 ## Fase 4 · `Switch`
 
-**Entregable:** `Switch(variable, { VALOR: html, … })`, que genera la cadena `{{#equals}}…{{else}}…{{/equals}}` y envuelve solo lo que cambia. Resuelve **P4** (variantes A/B).
+**Entregable:** `Switch({ on, cases, default })`, que genera la cadena `{{#equals}}…{{else equals}}…{{else}}…{{/equals}}` y envuelve solo lo que cambia. Resuelve **P4** (variantes A/B). Ver [propuesta-multimarca.md §8](propuesta-multimarca.md).
 
-**Listo cuando:** un mail de NHSS con `type` A/B se arma con `Switch` y compila en Handlebars.
+**Listo cuando:** un mail de NHSS con `type` A/B se arma con `Switch` y compila en Handlebars. ✔ Verificado: renderizado con Handlebars y un helper `equals`, cada `type` (A, B y otro) ve solo su bloque, también después de juice. Vista previa por segmento en `pnpm dev` con `?type=A`.
 
 ## Fase 5 · Componentes compuestos
 
@@ -67,7 +69,7 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 | `CodeBadge` | "CÓDIGO: {{lukerscode}}" con fondo |
 | `Button` | Botón HTML y `mailto:` (decisión **P3** frente a PNG) |
 | `Spacer` | Espacios verticales sueltos |
-| `Raw` | HTML a mano para piezas únicas, con las mismas validaciones |
+| `Raw` ✅ | HTML a mano para piezas únicas (string en `.ts`, JSX en `.tsx`); el build avisa si se repite en otro mail. Ver [tsx-y-raw.md](tsx-y-raw.md) |
 
 **Listo cuando:** `aniversario_grupo_1` y `renovacion_anticipada` se regeneran con componentes y se ven igual. Si solo cambian datos entre grupos, se resuelve **P5**.
 
@@ -94,7 +96,7 @@ La fase 2 no depende de nada pendiente; las fases 4, 5 y 6 ya pueden empezar.
 | # | Tema | Bloquea |
 |---|---|---|
 | P1 / M1 | Dónde viven los mails (por marca, por fecha, fuera del repo) | Fase 7 |
-| P2 | Inlinear CSS (`juice`, nueva dependencia) | — (mejora posterior) |
+| P2 | ~~Inlinear CSS~~ ✅ `juice` en el build (`src/core/inline.ts`); se conserva el `<style>` | Resuelto |
 | P3 | Botones PNG o HTML | Fase 5 (`Button`) |
 | P4 | Variantes A/B | Resuelta por la Fase 4 |
 | P5 | `aniversario_grupo_1/2/3` como un mail parametrizado | Fase 5 |

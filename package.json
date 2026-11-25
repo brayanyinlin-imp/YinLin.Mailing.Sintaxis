@@ -19,11 +19,24 @@
     }
   },
   "type": "module",
+  "imports": {
+    "#brands/*": "./src/brands/*/index.ts",
+    "#components": "./src/components/index.ts",
+    "#components/*": "./src/components/*.ts",
+    "#core/*": "./src/core/*.ts",
+    "#jsx/*": "./src/jsx/*.ts"
+  },
   "dependencies": {
     "handlebars": "4.7.9"
   },
   "devDependencies": {
+    "@maizzle/tailwindcss": "1.5.6",
+    "@tailwindcss/node": "4.3.5",
+    "@tailwindcss/oxide": "4.3.5",
     "@types/node": "26.1.2",
+    "juice": "^12.2.6",
+    "lightningcss": "^1.33.0",
+    "tailwindcss": "4.3.5",
     "tsx": "4.23.5",
     "typescript": "7.0.2"
   }

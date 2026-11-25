@@ -1,5 +1,5 @@
-import type { Brand } from '../../core/brand.ts'
-import { asset, cssWidth, esc, row, table, type Html, type Padding, type Width } from '../../core/html.ts'
+import type { Brand } from '#core/brand'
+import { asset, cssWidth, esc, row, table, type Html, type Padding, type Width } from '#core/html'
 
 export interface ImageProps {
   /** Nombre del archivo en el blob o URL https absoluta. */

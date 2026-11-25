@@ -1,5 +1,5 @@
 // Migración de templates/semanal/inactivos.html
-import { Disclaimer, Footer, Image, Layout, Text, utm } from '../src/brands/nhss/index.ts'
+import { Disclaimer, Footer, Image, Layout, Text, utm } from '#brands/nhss'
 
 const u = utm({ campaign: '09nov_a_inactivos_8_autos_2_depa' })
 const suscripciones = u.link('/suscripciones')

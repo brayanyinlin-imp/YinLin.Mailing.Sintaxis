@@ -1,6 +1,8 @@
 /* Estilos comunes a todas las marcas. El CSS de cada marca (fuentes, paleta) va antes.
    - Valores literales: los clientes de correo no soportan var().
-   - Solo clases que se usan. Lo estructural (padding, anchos, display) lo ponen los componentes inline. */
+   - Solo clases que se usan. Lo estructural (padding, anchos, display) lo ponen los componentes inline.
+   - Para HTML a mano (Raw, JSX) están las utilidades de Tailwind: pt-*, px-*, text-*, font-*… (ver docs/tailwind.md).
+     Ojo: no definir aquí clases con nombre de utilidad de Tailwind, porque la de Tailwind lleva !important y gana. */
 
 :root { color-scheme: light; supported-color-schemes: light; }
 
@@ -23,16 +25,6 @@ a { text-decoration: none; }
 .fs-20 { font-size: 20px; line-height: 26px; }
 .fs-24 { font-size: 24px; line-height: 30px; }
 .fs-30 { font-size: 30px; line-height: 36px; }
-
-/* ESPACIADO (para HTML escrito a mano dentro de Raw; los componentes usan su prop padding) */
-.pt-5  { padding-top: 5px; }
-.pt-10 { padding-top: 10px; }
-.pt-20 { padding-top: 20px; }
-.pt-30 { padding-top: 30px; }
-.pb-5  { padding-bottom: 5px; }
-.pb-10 { padding-bottom: 10px; }
-.pb-20 { padding-bottom: 20px; }
-.pb-30 { padding-bottom: 30px; }
 
 /* CAJAS DE TEXTO */
 .box-360 { width: 360px; max-width: 100%; margin: 0 auto; }

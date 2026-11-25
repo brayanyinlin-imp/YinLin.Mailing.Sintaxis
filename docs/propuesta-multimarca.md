@@ -67,18 +67,32 @@ src/
     utm.ts             ← utm({ campaign }) → u.link(), u.url()
     brand.ts           ← defineBrand() y el tipo Brand
     styles.ts          ← CSS de la marca + common.css + css del mail
+    tailwind.ts        ← utilidades de Tailwind aptas para email (ver tailwind.md)
   components/
     base/              ← Layout, Image, Text (sin marca)
     kit.ts             ← createKit(brand): componentes atados a una marca
-  styles/common.css    ← reset, fs-*, fw-*, pt-* / pb-*, box-*
+  styles/common.css    ← reset, fs-*, fw-*, box-*
   brands/
     nhss/
       brand.ts         ← configuración
       index.ts         ← lo que importa un mail de NHSS
-      footer.ts · disclaimer.ts · styles.css
+      footer.ts · disclaimer.ts · styles.css · theme.css
     tucambista/        ← pendiente (Fase 6)
-      brand.ts · index.ts · footer.ts · legal.ts · styles.css
+      brand.ts · index.ts · footer.ts · legal.ts · styles.css · theme.css
 ```
+
+### Aliases de import ✅
+
+Definidos en `package.json` (`"imports"`, nativo de Node; TypeScript y tsx los resuelven sin configuración extra):
+
+| Alias | Apunta a | Uso |
+|---|---|---|
+| `#brands/<marca>` | `src/brands/<marca>/index.ts` | Lo que importa un mail: `import { Layout, Image, utm } from '#brands/nhss'` |
+| `#components` | `src/components/index.ts` | Piezas sin marca (`createKit`, tipos) |
+| `#components/<ruta>` | `src/components/<ruta>.ts` | `#components/kit`, `#components/base/image` |
+| `#core/<módulo>` | `src/core/<módulo>.ts` | `#core/html`, `#core/utm`, `#core/brand` |
+
+Un mail se importa igual sin importar en qué subcarpeta de `mails/` esté. Dentro de una misma carpeta se siguen usando imports relativos (`./brand.ts`).
 
 ## 5. La marca
 
@@ -92,6 +106,7 @@ export default defineBrand({
   link: (path) => ({ path: '/iniciar-sesion', query: { returnUrl: path } }),
   personalization: { email: '{{email}}', internalId: '{{internalId}}' },
   styles: new URL('./styles.css', import.meta.url),
+  theme: new URL('./theme.css', import.meta.url),
 })
 
 // src/brands/tucambista/brand.ts (propuesto)
@@ -103,6 +118,7 @@ export default defineBrand({
   link: (path) => ({ path }),     // links directos
   personalization: {},
   styles: new URL('./styles.css', import.meta.url),
+  theme: new URL('./theme.css', import.meta.url),
 })
 ```
 
@@ -113,7 +129,8 @@ export default defineBrand({
 | `utm` | `utm_source` y `utm_medium` de la marca |
 | `link(path)` | A dónde apunta un link: directo, o por el login con `returnUrl` |
 | `personalization` | Params del destinatario que se agregan a los links personalizados |
-| `styles` | CSS de la marca: fuentes, paleta y bloques propios |
+| `styles` | CSS de la marca: `@import` de fuentes y bloques propios |
+| `theme` | Tema de Tailwind: colores y fuentes (`text-primary`, `font-main`…) |
 
 Cada marca expone su kit:
 
@@ -129,7 +146,7 @@ export { Disclaimer } from './disclaimer.ts'
 Reemplaza a `campaign()`. La URL se arma desde un **objeto de query params** y se serializa al final con `toQuery()`.
 
 ```ts
-import { utm } from '../src/brands/nhss/index.ts'
+import { utm } from '#brands/nhss'
 
 const u = utm({
   campaign: '22nov_activos_premios',            // utm_campaign
@@ -172,42 +189,53 @@ Cualquier otro param (incluidos `utm_*` propios como `utm_media_content` o `utm_
 
 ## 7. Estilos ✅
 
-`base.css` se dividió en dos capas:
+`base.css` se dividió en capas:
 
 | Capa | Contenido |
 |---|---|
-| `brands/<marca>/styles.css` | `@import` de fuentes, `font-main`, `font-legal`, paleta (`text-main`, `text-primary`, `text-secondary`, `text-tertiary`…) y bloques propios (`footer-text`, `disclaimer-item`) |
-| `styles/common.css` | Reset, `font-italic`, `fw-*`, `fs-*`, `pt-*` / `pb-*`, `box-*` |
+| `brands/<marca>/styles.css` | `@import` de fuentes y bloques propios (`footer-text`, `disclaimer-item`) |
+| `brands/<marca>/theme.css` | Tema de Tailwind: paleta (`text-main`, `text-primary`, `text-secondary`, `text-tertiary`…) y fuentes (`font-main`, `font-legal`). Tailwind genera solo las que usa cada mail ([tailwind.md](tailwind.md)) |
+| `styles/common.css` | Reset, `font-italic`, `fw-*`, `fs-*`, `box-*` |
 
-Orden de inyección: **marca → común → `css` del mail**. La marca va primero porque su `@import` debe ser la primera regla. `Text({ variant: 'primary' })` produce `text-primary` en ambas marcas; en NHSS es `#6c1297` y en TuCambista sería `#1D63FF`.
+Orden de inyección: **marca → común → `css` del mail → utilidades de Tailwind**. La marca va primero porque su `@import` debe ser la primera regla. `Text({ variant: 'primary' })` produce `text-primary` en ambas marcas; en NHSS es `#6c1297` y en TuCambista sería `#1D63FF`.
 
-## 8. `Switch`: contenido por segmento
+## 8. `Switch`: contenido por segmento ✅
 
-Genera la cadena `{{#equals}}…{{else}}…{{/equals}}` que hoy se escribe a mano. Sirve para el `type` de NHSS y el `level` de TuCambista.
+Genera la cadena `{{#equals}}…{{else equals}}…{{else}}…{{/equals}}` que hoy se escribe a mano: la forma encadenada que ya usan `beneficios.html` y `bienvenida_mail`. Sirve para el `type` de NHSS y el `level` de TuCambista.
 
 ```ts
-Switch('level', {
-  FUNDADOR: Image({ src: 'card_fundador.png', alt: 'Nivel Fundador', href: u.link(op, { content: 'escudo' }) }),
-  MAGNATE:  Image({ src: 'card_magnate.png',  alt: 'Nivel Magnate',  href: u.link(op, { content: 'escudo' }) }),
-  DIRECTOR: Image({ src: 'card_director.png', alt: 'Nivel Director', href: u.link(op, { content: 'escudo' }) }),
+import { Switch } from '#brands/nhss'
+
+Switch({
+  on: 'type',
+  cases: {
+    A: [Text({ html: 'Solo para A' }), Image({ … })],   // uno o varios bloques
+    B: Text({ html: 'Solo para B' }),
+  },
+  default: Text({ html: 'Para el resto' }),             // opcional
 })
+// → {{#equals type "A"}}…{{else equals type "B"}}…{{else}}…{{/equals}}
 ```
 
-- Se envuelve **solo lo que cambia**, no el `<body>` entero. `fide.html` hoy repite el mail completo tres veces (892 líneas, 45 KB).
+- Va en el `body` como cualquier bloque y se envuelve **solo lo que cambia**, no el `<body>` entero. `fide.html` hoy repite el mail completo tres veces (892 líneas, 45 KB).
+- Sin `default`, quien no coincide con ningún caso no ve nada en ese punto.
+- El build falla si `on` no es un nombre de variable, si no hay casos o si un valor lleva comillas o llaves.
+- **Protegido del formateo:** cada bloque de cada rama va precedido de `<!-- prettier-ignore -->`, así Prettier (o el editor al guardar) no reacomoda el HTML de los segmentos. En HTML Prettier solo admite ese comentario por nodo; `prettier-ignore-start/end` no funciona.
+- **Vista previa por segmento:** en `pnpm dev`, `…/mail.html?type=A` renderiza el mail con Handlebars y esos datos (cualquier otro parámetro también: `&name=Ana`). Sin parámetros se ve el HTML con todas las ramas.
 - Si se necesita en varios puntos del mail, se escribe un `Switch` por bloque o se arma el cuerpo con un `.map()` sobre los niveles.
 - Relación con **P4** (variantes A/B): `Switch` es la forma estándar de resolverlas en el envío.
 
 ## 9. Ejemplo: `fide.html` con componentes
 
 ```ts
-import { Image, Layout, Switch, Text, utm } from '../src/brands/tucambista/index.ts'
+import { Image, Layout, Switch, Text, utm } from '#brands/tucambista'
 
 const u = utm({ campaign: 'bienvenida_society' })
 const op = '/go/app/operacion'
 
 const LEVELS = { FUNDADOR: 'Fundador', MAGNATE: 'Magnate', DIRECTOR: 'Director' }
 const byLevel = (fn: (key: string, label: string) => string) =>
-  Switch('level', Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [k, fn(k.toLowerCase(), v)])))
+  Switch({ on: 'level', cases: Object.fromEntries(Object.entries(LEVELS).map(([k, v]) => [k, fn(k.toLowerCase(), v)])) })
 
 export default Layout({
   subject: '¡Bienvenido a TuCambista Society!',

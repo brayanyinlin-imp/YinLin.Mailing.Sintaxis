@@ -20,8 +20,10 @@ export interface Brand {
   link: (path: string) => LinkTarget
   /** Params que identifican al destinatario; se agregan a los links personalizados. Vacío si la marca no los usa. */
   personalization: Query
-  /** CSS de la marca (fuentes, paleta y bloques propios). Se inyecta antes de common.css. */
+  /** CSS de la marca (@import de fuentes y bloques propios). Se inyecta antes de common.css. */
   styles: URL
+  /** Tema de Tailwind de la marca (@theme con colores y fuentes): genera text-primary, font-main… */
+  theme: URL
 }
 
 const SITE = /^https:\/\/[^/]+$/

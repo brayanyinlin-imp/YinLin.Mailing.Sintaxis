@@ -1,4 +1,4 @@
-import { box as boxTable, row, table, type Html, type Padding } from '../../core/html.ts'
+import { box as boxTable, row, table, type Html, type Padding } from '#core/html'
 
 export type TextVariant = 'body' | 'highlight' | 'primary' | 'note'
 
@@ -21,9 +21,16 @@ const variantClass: Record<TextVariant, string> = {
   note: 'font-italic text-tertiary',
 }
 
+/** Etiquetas de bloque: dentro de un <p> son HTML inválido y el navegador las saca del párrafo, que pierde sus clases. */
+const BLOCK_TAG = /<(p|div|table|h[1-6]|ul|ol|center|hr)[\s/>]/i
+
 /** Párrafo centrado dentro de una caja de ancho fijo. */
 export const Text = ({ html, variant = 'body', size, box = 440, padding = [0, 0] }: TextProps): Html => {
+  const tag = html.match(BLOCK_TAG)
+  if (tag) throw new Error(`Text: no admite <${tag[1]}>; el componente ya genera el <p>. Para bloques usa Raw`)
   const fs = size ?? (variant === 'note' ? 14 : 16)
-  const cell = `<tr><td align="center" class="font-main fs-${fs} ${variantClass[variant]}" style="text-align:center">${html}</td></tr>`
+  // margin:0 inline: si el cliente elimina el <style>, el <p> no recupera el margen por defecto.
+  const p = `<p class="font-main fs-${fs} ${variantClass[variant]}" style="margin:0;text-align:center">${html}</p>`
+  const cell = `<tr><td align="center">${p}</td></tr>`
   return table(row(boxTable(cell, box), padding))
 }
