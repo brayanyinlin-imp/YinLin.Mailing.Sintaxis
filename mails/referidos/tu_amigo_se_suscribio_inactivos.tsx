@@ -10,7 +10,7 @@ import {
 } from "#brands/nhss";
 
 const u = utm({ campaign: "automatizado_referidos_inactivos" });
-const suscripciones = u.link("/suscripciones");
+const suscripciones = u.link("/suscripciones?plans=opu");
 
 const BLOB = "https://stnohaysinsuerteprod.blob.core.windows.net/mailing";
 
