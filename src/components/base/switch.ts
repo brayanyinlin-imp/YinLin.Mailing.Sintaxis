@@ -16,7 +16,15 @@ export interface SwitchProps {
   default?: Content
 }
 
-const join = (content: Content): Html => (Array.isArray(content) ? content.join('\n') : content)
+/**
+ * Prettier (y los editores que formatean al guardar) solo admite en HTML `<!-- prettier-ignore -->`,
+ * que protege el nodo siguiente; `prettier-ignore-start/end` no funciona en HTML.
+ * Por eso va uno delante de cada bloque de cada rama: quedan tal cual los genera el build.
+ */
+const IGNORE = '<!-- prettier-ignore -->'
+
+const join = (content: Content): Html =>
+  (Array.isArray(content) ? content : [content]).map((block) => `${IGNORE}\n${block}`).join('\n')
 
 /**
  * Contenido por segmento, resuelto por la plataforma al enviar:

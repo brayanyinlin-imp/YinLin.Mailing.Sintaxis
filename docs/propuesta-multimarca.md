@@ -220,6 +220,7 @@ Switch({
 - Va en el `body` como cualquier bloque y se envuelve **solo lo que cambia**, no el `<body>` entero. `fide.html` hoy repite el mail completo tres veces (892 líneas, 45 KB).
 - Sin `default`, quien no coincide con ningún caso no ve nada en ese punto.
 - El build falla si `on` no es un nombre de variable, si no hay casos o si un valor lleva comillas o llaves.
+- **Protegido del formateo:** cada bloque de cada rama va precedido de `<!-- prettier-ignore -->`, así Prettier (o el editor al guardar) no reacomoda el HTML de los segmentos. En HTML Prettier solo admite ese comentario por nodo; `prettier-ignore-start/end` no funciona.
 - **Vista previa por segmento:** en `pnpm dev`, `…/mail.html?type=A` renderiza el mail con Handlebars y esos datos (cualquier otro parámetro también: `&name=Ana`). Sin parámetros se ve el HTML con todas las ramas.
 - Si se necesita en varios puntos del mail, se escribe un `Switch` por bloque o se arma el cuerpo con un `.map()` sobre los niveles.
 - Relación con **P4** (variantes A/B): `Switch` es la forma estándar de resolverlas en el envío.
